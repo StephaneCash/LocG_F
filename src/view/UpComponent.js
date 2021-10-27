@@ -1,6 +1,14 @@
 import cash from "../img/cash.jpg";
+import { useState } from "react";
 
-function UpComponent() {
+function UpComponent(props) {
+
+    const [valueInput, setValueInput] = useState("");
+
+    var data = props.valueInput;
+
+    data = valueInput;
+
     return (
         <>
             <div class="main-content">
@@ -8,7 +16,7 @@ function UpComponent() {
                 <header>
                     <div class="searchInput">
                         <span class="fa fa-search"></span>
-                        <input type="saerch" placeholder="Rechercher" />
+                        <input type="saerch" placeholder="Rechercher" onChange={e => setValueInput(e.target.value)} />
                     </div>
 
                     <div class="social-icons">

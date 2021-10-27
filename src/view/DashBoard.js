@@ -9,6 +9,9 @@ function DashBoard() {
 
     const [data, setData] = useState([]);
     const [etat, setEtat] = useState(false);
+    const [valueSearch, setValueSearch] = useState("");
+    const [id, setId] = useState(0);
+    const [elId, setElId] = useState("");
 
     const fetchData = () => {
         API_Specialites.getAllSpecialites().then(res => {
@@ -22,13 +25,16 @@ function DashBoard() {
         fetchData();
     }, []);
 
-    console.log("DATA", data)
+    console.log("El", elId)
+
 
     return (
         <>
             <Header />
             <div className="main-content">
-                <UpComponent />
+                <UpComponent
+                    valueInput={valueSearch}
+                />
 
                 <main>
                     <h4 className="dash-title"> <i className="fa fa-dashboard"> </i> Dashboard</h4>
@@ -82,41 +88,48 @@ function DashBoard() {
                                 <table className="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Nom</th>
+                                            <th>#</th>
                                             <th>Spécialistes</th>
                                             <th>Spécialités</th>
                                             <th>Adresses</th>
-                                            <th>Images</th>
                                             <th>Statut</th>
+                                            <th>Détails</th>
                                         </tr>
                                     </thead>
 
                                     {etat ?
                                         <>
                                             <tbody>
-                                                <tr>
-                                                    <td>Stéphane KIkoni</td>
-                                                    <td>Kin de la science 5</td>
-                                                    <td>Dév full stack</td>
-                                                    <td className="td-team">
-                                                        <div className="img-1"></div>
-                                                        <div className="img-2"></div>
-                                                        <div className="img-3"></div>
-                                                    </td>
-                                                    <td>
-                                                        <span className="badge badge-success">
-                                                            Success
-                                                        </span>
-                                                    </td>
-                                                </tr>
+                                                {
+                                                    data.filter((val) => {
+                                                        return val.nom.toLowerCase().includes(valueSearch);
+                                                    }).map((val) => {
+                                                        return (
+                                                            <>
+                                                                <tr key={val.id}>
+                                                                    <td>{val.id}</td>
+                                                                    <td>{val.specialistes[0].nom} {val.specialistes[0].postnom} {val.specialistes[0].prenom}</td>
+                                                                    <td>{val.nom}</td>
+                                                                    <td>{val.specialistes[0].adresse}</td>
+                                                                    <td>ACTIF</td>
+                                                                    <td style={{ cursor: "pointer" }}>
+                                                                        <i className="fa fa-info-circle" style={{ fontSize: "25px", color: "#747881", }} onClick={data => { setElId(val.id); setId(2) }}></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
                                             </tbody>
                                         </>
 
                                         : <>
-                                            <div className="dd">
-                                                <i className="fa fa-warning"></i><br />
-                                                Aucune donnée disponible
-                                            </div>
+                                            <tr>
+                                                <div className="dd">
+                                                    <i className="fa fa-warning"></i><br />
+                                                    Aucune donnée disponible
+                                                </div>
+                                            </tr>
                                         </>}
                                 </table>
 
@@ -125,29 +138,84 @@ function DashBoard() {
 
                             <div className="summary">
                                 <div className="summary-card">
-                                    <div className="summary-single">
-                                        <span className="fa fa-info"></span>
-                                        <div>
-                                            <h5>132</h5>
-                                            <small>Téléphone</small>
-                                        </div>
-                                    </div>
+                                    {
+                                        etat ?
+                                            <>
+                                                <div className="summary-single">
+                                                    <div>
+                                                        {id == 2 ?
+                                                            <>
+                                                                {
+                                                                    data.filter((val) => {
+                                                                        return val.nom.toLowerCase().includes(valueSearch);
+                                                                    }).map((val) => {
+                                                                        if (val.id == elId) {
+                                                                            return (
+                                                                                <>
+                                                                                    <span className="fa fa-info"></span>
+                                                                                    <small style={{ fontSize: '14px' }}>Description</small>
+                                                                                    <h5 style={{ fontSize: "13px" }}>{val.specialistes[0].description}</h5>
+                                                                                </>
+                                                                            )
+                                                                        }
+                                                                    })
+                                                                }
+                                                            </> : ""
+                                                        }
+                                                    </div>
+                                                </div>
 
-                                    <div className="summary-single">
-                                        <span className="fa fa-phone"></span>
-                                        <div>
-                                            <h5>232</h5>
-                                            <small>Number of leave</small>
-                                        </div>
-                                    </div>
+                                                <div className="summary-single">
 
-                                    <div className="summary-single">
-                                        <span className="fa fa-spinner"></span>
-                                        <div>
-                                            <h5>192</h5>
-                                            <small>Number of cash</small>
-                                        </div>
-                                    </div>
+                                                    {id == 2 ?
+                                                        <>
+                                                            {
+                                                                data.filter((val) => {
+                                                                    return val.nom.toLowerCase().includes(valueSearch);
+                                                                }).map((val) => {
+                                                                    if (val.id == elId) {
+                                                                        return (
+                                                                            <>
+                                                                                <span className="fa fa-phone"></span>
+                                                                                <small style={{ fontSize: '14px' }}>Téléphone</small> <br />
+                                                                                <h5 style={{ fontSize: "13px" }}>{val.specialistes[0].telephone}</h5>
+
+                                                                            </>
+                                                                        )
+                                                                    }
+                                                                })
+                                                            }
+                                                        </> : <div style={{ textAlign: "center" }}>Veuillez cliquer sur un élément dans le tableau</div>
+                                                    }
+                                                </div>
+
+                                                <div className="summary-single">
+
+                                                    {id == 2 ?
+                                                        <>
+                                                            {
+                                                                data.filter((val) => {
+                                                                    return val.nom.toLowerCase().includes(valueSearch);
+                                                                }).map((val) => {
+                                                                    if (val.id == elId) {
+                                                                        return (
+                                                                            <>
+                                                                                <span className="fa fa-spinner"></span>
+                                                                                <small style={{ fontSize: '14px', marginBottom: "10px" }}>Adresse</small>
+                                                                                <h5 style={{ fontSize: "13px", marginTop: "10px" }}>{val.specialistes[0].adresse}</h5>
+
+                                                                            </>
+                                                                        )
+                                                                    }
+                                                                })
+                                                            }
+                                                        </> : ""
+                                                    }
+                                                </div>
+                                            </> : <div style={{ textAlign: "center", padding: "5px" }}>Pas de données ! </div>
+                                    }
+
+
                                 </div>
 
                                 <div className="bday-card">

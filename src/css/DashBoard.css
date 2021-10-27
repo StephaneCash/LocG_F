@@ -395,7 +395,8 @@ tbody tr:nth-child(even) {
     position: absolute;
     left: 40%;
     transform: translateX(-50%);
-    bottom: 28%;
+    bottom: 14%;
+    background-color: white;
 }
 
 .dd .fa {
