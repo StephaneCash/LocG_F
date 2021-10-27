@@ -1,13 +1,35 @@
 import "../css/DashBoard.css";
 import Header from "./Header";
 import UpComponent from "./UpComponent";
+import { Link } from "react-router-dom";
+import API_Specialites from "../data/API_Specialites";
+import { useState, useEffect } from "react";
 
 function DashBoard() {
+
+    const [data, setData] = useState([]);
+    const [etat, setEtat] = useState(false);
+
+    const fetchData = () => {
+        API_Specialites.getAllSpecialites().then(res => {
+            const specialites = res.data;
+            setEtat(true);
+            setData(specialites);
+        })
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    console.log("DATA", data)
+
     return (
         <>
             <Header />
             <div className="main-content">
                 <UpComponent />
+
                 <main>
                     <h4 className="dash-title"> <i className="fa fa-dashboard"> </i> Dashboard</h4>
 
@@ -16,12 +38,25 @@ function DashBoard() {
                             <div className="card-body">
                                 <span className="fa fa-gear"></span>
                                 <div className="">
-                                    <h5>Nombre spécialistes</h5>
+                                    <h5>Nombre de Garages</h5>
+                                    <h4>{data.length}</h4>
+                                </div>
+                            </div>
+                            <div className="card-footer">
+                                <Link to="">Voir tout</Link>
+                            </div>
+                        </div>
+
+                        <div className="card-single">
+                            <div className="card-body">
+                                <span className="fa fa-gear"></span>
+                                <div className="">
+                                    <h5>Garages actifs</h5>
                                     <h4>56</h4>
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <a href="">Voir tout</a>
+                                <Link to="">Voir tout</Link>
                             </div>
                         </div>
 
@@ -29,25 +64,12 @@ function DashBoard() {
                             <div className="card-body">
                                 <span className="fa fa-gear"></span>
                                 <div className="">
-                                    <h5>Nombre SPEC</h5>
-                                    <h4>96</h4>
-                                </div>
-                            </div>
-                            <div className="card-footer">
-                                <a href="">Voir tout</a>
-                            </div>
-                        </div>
-
-                        <div className="card-single">
-                            <div className="card-body">
-                                <span className="fa fa-gear"></span>
-                                <div className="">
-                                    <h5>Nombre Over</h5>
+                                    <h5>Garages non actifs</h5>
                                     <h4>36</h4>
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <a href="">Voir tout</a>
+                                <Link to="">Voir tout</Link>
                             </div>
                         </div>
                     </div>
@@ -55,96 +77,50 @@ function DashBoard() {
                     <section className="recent">
                         <div className="activity-grid">
                             <div className="activity-card">
-                                <h3 style={{ fontSize: "20px" }}>Recent Activity</h3>
+                                <h3 style={{ fontSize: "20px" }}>Garages à proximité</h3>
 
-                                <table>
+                                <table className="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Noms</th>
-                                            <th>Adresse</th>
-                                            <th>Spécialité</th>
+                                            <th>Nom</th>
+                                            <th>Spécialistes</th>
+                                            <th>Spécialités</th>
+                                            <th>Adresses</th>
                                             <th>Images</th>
                                             <th>Statut</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Stéphane KIkoni</td>
-                                            <td>Kin de la science 5</td>
-                                            <td>Dév full stack</td>
-                                            <td className="td-team">
-                                                <div className="img-1"></div>
-                                                <div className="img-2"></div>
-                                                <div className="img-3"></div>
-                                            </td>
-                                            <td>
-                                                <span className="badge badge-success">
-                                                    Success
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cash Zeus</td>
-                                            <td>Kin 71, Kkt</td>
-                                            <td> Software Engineer</td>
-                                            <td className="td-team">
-                                                <div className="img-1"></div>
-                                                <div className="img-2"></div>
-                                                <div className="img-3"></div>
-                                            </td>
-                                            <td>
-                                                <span className="badge badge-success">
-                                                    En attente
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dosa Zeus</td>
-                                            <td>Lukula 195, Kkt</td>
-                                            <td> Dév Mobile App</td>
-                                            <td className="td-team">
-                                                <div className="img-1"></div>
-                                                <div className="img-2"></div>
-                                                <div className="img-3"></div>
-                                            </td>
-                                            <td>
-                                                <span className="badge badge-success">
-                                                    Success
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alain Kikoni</td>
-                                            <td>Kin 71, Kkt</td>
-                                            <td> Prof. Hist</td>
-                                            <td className="td-team">
-                                                <div className="img-1"></div>
-                                                <div className="img-2"></div>
-                                                <div className="img-3"></div>
-                                            </td>
-                                            <td>
-                                                <span className="badge badge-success">
-                                                    Pending
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mboma Espeditte</td>
-                                            <td>Kin 71, Kkt</td>
-                                            <td> Prof. Fr</td>
-                                            <td className="td-team">
-                                                <div className="img-1"></div>
-                                                <div className="img-2"></div>
-                                                <div className="img-3"></div>
-                                            </td>
-                                            <td>
-                                                <span className="badge badge-success">
-                                                    Success
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+
+                                    {etat ?
+                                        <>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Stéphane KIkoni</td>
+                                                    <td>Kin de la science 5</td>
+                                                    <td>Dév full stack</td>
+                                                    <td className="td-team">
+                                                        <div className="img-1"></div>
+                                                        <div className="img-2"></div>
+                                                        <div className="img-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <span className="badge badge-success">
+                                                            Success
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </>
+
+                                        : <>
+                                            <div className="dd">
+                                                <i className="fa fa-warning"></i><br />
+                                                Aucune donnée disponible
+                                            </div>
+                                        </>}
                                 </table>
+
+
                             </div>
 
                             <div className="summary">
@@ -153,7 +129,7 @@ function DashBoard() {
                                         <span className="fa fa-info"></span>
                                         <div>
                                             <h5>132</h5>
-                                            <small>Number of staff</small>
+                                            <small>Téléphone</small>
                                         </div>
                                     </div>
 

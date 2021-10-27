@@ -15,7 +15,7 @@ function UpComponent() {
                         <span class="fa fa-bell"></span>
                         <span class="fa fa-comment"></span>
                         <div>
-
+                            <img src={cash} />
                         </div>
                     </div>
                 </header>

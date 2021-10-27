@@ -124,12 +124,11 @@ main {
     margin-left: 1.2rem;
 }
 
-.social-icons div {
+.social-icons div img {
     height: 38px;
     width: 38px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../img/cash.jpg");
     border-radius: 50px;
 }
 
@@ -226,14 +225,8 @@ main {
     color: orange;
 }
 
-.activity-card table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
 .activity-card table thead {
     background-color: #efefef;
-    text-align: left;
 }
 
 .activity-card th, td {
@@ -396,4 +389,18 @@ tbody tr:nth-child(even) {
     .summary {
         margin-top: 1.5rem;
     }
+}
+
+.dd {
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+    bottom: 28%;
+}
+
+.dd .fa {
+    color: red;
+    font-size: 20px;
+    display: block;
+    text-align: center;
 }
