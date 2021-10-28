@@ -14,8 +14,8 @@ const fetcher = (...args) => fetch(...args).then(response => response.json());
 function FindGarage() {
 
     const [viewport, setViewport] = useState({
-        latitude: -4.3217055,
-        longitude: 15.3125974,
+        latitude: 52.6376,
+        longitude: -1.135171,
         width: "auto",
         height: "75vh",
         zoom: 12
