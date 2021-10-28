@@ -17,7 +17,7 @@ function Specialistes() {
                     <br />
 
                     <div className='contentTable' style={{ background: "white", height: "40vh", padding: "10px", overflow: "auto" }}>
-                        <h4 style={{ border: "1px solid silver", padding: '10px' }}>Liste de Spécialistes à proximité</h4>
+                        <h4 style={{ border: "1px solid silver", padding: '10px', color: "#777" }}>Liste de Spécialistes à proximité</h4>
                         <div className="btnAj">
                             <button className="button" style={{
                                 marginBottom: "10px", backgroundColor: "#027581", border: "1px solid white", width: "40%", borderRadius: "5px", padding: "5px",

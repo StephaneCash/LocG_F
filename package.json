@@ -25,10 +25,13 @@
     "react-dom": "^17.0.2",
     "react-google-maps": "^9.4.5",
     "react-loader-spinner": "^4.0.0",
+    "react-map-gl": "^6.1.17",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-spinners": "^0.11.0",
+    "swr": "^1.0.1",
+    "use-supercluster": "^0.3.0",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
