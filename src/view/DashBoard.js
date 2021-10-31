@@ -4,6 +4,7 @@ import UpComponent from "./UpComponent";
 import { Link } from "react-router-dom";
 import API_Specialites from "../data/API_Specialites";
 import { useState, useEffect } from "react";
+import LoadWaiting from "../modal/LoadWaiting";
 
 function DashBoard() {
 
@@ -12,11 +13,13 @@ function DashBoard() {
     const [valueSearch, setValueSearch] = useState("");
     const [id, setId] = useState(0);
     const [elId, setElId] = useState("");
+    const [etatLoad, setEtatLoad] = useState(true);
 
     const fetchData = () => {
         API_Specialites.getAllSpecialites().then(res => {
             const specialites = res.data;
             setEtat(true);
+            setEtatLoad(false);
             setData(specialites);
         })
     }
@@ -143,18 +146,18 @@ function DashBoard() {
                                             <>
                                                 <div className="summary-single">
                                                     <div>
-                                                        {id == 2 ?
+                                                        {id === 2 ?
                                                             <>
                                                                 {
                                                                     data.filter((val) => {
                                                                         return val.nom.toLowerCase().includes(valueSearch);
                                                                     }).map((val) => {
-                                                                        if (val.id == elId) {
+                                                                        if (val.id === elId) {
                                                                             return (
                                                                                 <>
                                                                                     <span className="fa fa-info"></span>
                                                                                     <small style={{ fontSize: '14px' }}>Description</small>
-                                                                                    <h5 style={{ fontSize: "13px" }}>{val.specialistes[0].description}</h5>
+                                                                                    <h5 style={{ fontSize: "13px", marginTop: "10px" }}>{val.specialistes[0].description}</h5>
                                                                                 </>
                                                                             )
                                                                         }
@@ -167,18 +170,18 @@ function DashBoard() {
 
                                                 <div className="summary-single">
 
-                                                    {id == 2 ?
+                                                    {id === 2 ?
                                                         <>
                                                             {
                                                                 data.filter((val) => {
                                                                     return val.nom.toLowerCase().includes(valueSearch);
                                                                 }).map((val) => {
-                                                                    if (val.id == elId) {
+                                                                    if (val.id === elId) {
                                                                         return (
                                                                             <>
                                                                                 <span className="fa fa-phone"></span>
-                                                                                <small style={{ fontSize: '14px' }}>Téléphone</small> <br />
-                                                                                <h5 style={{ fontSize: "13px" }}>{val.specialistes[0].telephone}</h5>
+                                                                                <small style={{ fontSize: '14px', marginBottom: "12px" }}>Téléphone</small>
+                                                                                <h5 style={{ fontSize: "13px", marginLeft: "-86px", marginTop: "40px" }}>{val.specialistes[0].telephone}</h5>
 
                                                                             </>
                                                                         )
@@ -191,18 +194,18 @@ function DashBoard() {
 
                                                 <div className="summary-single">
 
-                                                    {id == 2 ?
+                                                    {id === 2 ?
                                                         <>
                                                             {
                                                                 data.filter((val) => {
                                                                     return val.nom.toLowerCase().includes(valueSearch);
                                                                 }).map((val) => {
-                                                                    if (val.id == elId) {
+                                                                    if (val.id === elId) {
                                                                         return (
                                                                             <>
-                                                                                <span className="fa fa-spinner"></span>
-                                                                                <small style={{ fontSize: '14px', marginBottom: "10px" }}>Adresse</small>
-                                                                                <h5 style={{ fontSize: "13px", marginTop: "10px" }}>{val.specialistes[0].adresse}</h5>
+                                                                                <span className="fa fa-spinner" style={{ marginTop: "-15px" }}></span>
+                                                                                <small style={{ fontSize: '14px', marginTop: "-20px" }}>Adresse</small>
+                                                                                <h5 style={{ fontSize: "13px", marginTop: "40px", marginLeft: "-70px" }}>{val.specialistes[0].adresse}</h5>
 
                                                                             </>
                                                                         )
@@ -238,7 +241,9 @@ function DashBoard() {
 
                         </div>
                     </section>
-
+                    <LoadWaiting
+                        show={etatLoad}
+                    />
                 </main>
             </div>
         </>
