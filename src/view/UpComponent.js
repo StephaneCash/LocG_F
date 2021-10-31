@@ -24,6 +24,8 @@ function UpComponent(props) {
                         <span class="fa fa-comment"></span>
                         <div>
                             <img src={cash} />
+                            <span>Se déconnecter</span>
+                            <span><i class="fa fa-power-off" style={{ color: "#282c34", fontSize: "19px" }}></i></span>
                         </div>
                     </div>
                 </header>
