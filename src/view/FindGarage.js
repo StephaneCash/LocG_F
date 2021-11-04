@@ -2,61 +2,44 @@ import "../css/DashBoard.css";
 import Header from "./Header";
 import UpComponent from "./UpComponent";
 import useSwr from "swr";
-import ReactMapGL, { Marker, FlyToInterpolator } from "react-map-gl";
+import ReactMapGL, { Marker, FlyToInterpolator, Popup, FullscreenControl, NavigationControl } from "react-map-gl";
 import useSupercluster from "use-supercluster";
 import "../css/FindGarage.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import markerImg from "../img/marker.png";
 import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
+import * as parkDate from "../data/dataVille.json";
+import Geocoder from 'react-mapbox-gl-geocoder';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 function FindGarage() {
 
     const [viewport, setViewport] = useState({
-        latitude: 52.6376,
-        longitude: -1.135171,
+        latitude: 45.4311,
+        longitude: -75.6903,
         width: "auto",
-        height: "75vh",
-        zoom: 12
+        height: "80vh",
+        zoom: 10,
+        pitch: 0
     });
 
-    const mapRef = useRef();
+    const [selectGarage, setSelectedGarage] = useState(null);
+    const a = 'Bonjour';
 
-    const url = "http://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2019-10";
+    const fullscreenControlStyle = {
+        right: 10,
+        top: 10
+    };
 
-    const { data, error } = useSwr(url, fetcher);
-    const crimes = data && !error ? data.slice(0, 1000) : [];
-    const points = crimes.map(crime => ({
-        type: "Feature",
-        properties: {
-            cluster: false,
-            crimeId: crime.id,
-            category: crime.category
-        },
-        geometry: {
-            type: "Point",
-            coordinates: [
-                parseFloat(crime.location.longitude),
-                parseFloat(crime.location.latitude)
-            ]
-        }
-    }));
-
-    const bounds = mapRef.current ? mapRef.current.getMap().getBounds().toArray().flat() : null
-
-    const { clusters, supercluster } = useSupercluster({
-        points,
-        zoom: viewport.zoom,
-        bounds,
-        options: { radius: 75, maxZoom: 20 }
-    })
-
-    const affichageDetail = () => {
-        console.log("YOO");
+    const navControlStyle = {
+        bottom: 20,
+        right: 10
     }
 
-    console.log('Data', data)
+    const params = {
+        country: "ca"
+    }
 
     return (
         <>
@@ -67,67 +50,64 @@ function FindGarage() {
                     <div className="mainDiv">
                         Find
 
+
                         <ReactMapGL
-                            {...viewport} maxZoom={20}
                             mapStyle="mapbox://styles/mapbox/streets-v11"
+                            {...viewport}
                             mapboxApiAccessToken="pk.eyJ1Ijoic3RlcGhhbmVjYXNoIiwiYSI6ImNrdjhuN291MjRrYjQyd3A2YjlzcXp3eGUifQ.TD4eitBbhALsXRy9pWwNug"
-                            onViewportChange={newViewport => {
-                                setViewport({ ...newViewport })
+                            onViewportChange={viewport => {
+                                setViewport(viewport)
                             }}
-                            ref={mapRef}
+
                         >
+                            <FullscreenControl style={fullscreenControlStyle} />
+                            <NavigationControl style={navControlStyle} />
+                            <Marker
+                                latitude={45.4371}
+                                longitude={-75.6203}
+
+                            >
+                                <div style={{ color: "red" }}>Markeur1</div>
+                                <button class="btn btn-info" onClick={(e) => {
+                                    e.preventDefault();
+                                    setSelectedGarage(a);
+                                }} >
+                                    <img style={{ width: "30px" }} src={markerImg} />
+                                </button>
+                            </Marker>
+
+                            <Marker
+                                latitude={45.4311}
+                                longitude={-75.6903}
+
+                            >
+                                <div style={{ color: "red" }}>Markeur1</div>
+                                <button class="btn btn-info" onClick={(e) => {
+                                    e.preventDefault();
+                                    setSelectedGarage(a);
+                                }} >
+                                    <img style={{ width: "30px" }} src={markerImg} />
+                                </button>
+                            </Marker>
+
                             {
-                                clusters.map(cluster => {
-                                    const [longitude, latitude] = cluster.geometry.coordinates;
-                                    const { cluster: isCluster, point_count: poinCount } = cluster.properties;
-
-                                    if (isCluster) {
-                                        return (
-                                            <Marker
-                                                key={cluster.id}
-                                                latitude={latitude}
-                                                longitude={longitude}
-                                            >
-                                                <div
-                                                    className="cluster-marker"
-                                                    style={{
-                                                        width: `${10 + (poinCount / points.length) * 50}px`,
-                                                        height: `${10 + (poinCount / points.length) * 50}px`,
-                                                    }}
-
-                                                    onClick={() => {
-                                                        const expansionZoom = Math.min(
-                                                            supercluster.getClusterExpansionZoom(cluster.id),
-                                                            20
-                                                        );
-                                                        setViewport({
-                                                            ...viewport,
-                                                            latitude,
-                                                            longitude,
-                                                            zoom: expansionZoom,
-                                                            transitionInterpolator: new FlyToInterpolator({ speed: 2 }),
-                                                            transitionDuratio: "auto"
-                                                        })
-                                                    }}
-                                                >
-                                                    {poinCount}
-                                                </div>
-                                            </Marker>
-                                        )
-                                    }
-
-                                    return (
-                                        <Marker
-                                            key={cluster.properties.id}
-                                            latitude={latitude}
-                                            longitude={longitude}
+                                selectGarage ? (
+                                    <>
+                                        <Popup
+                                            latitude={45.4371}
+                                            longitude={-75.6203}
+                                            onClose={() => {
+                                                setSelectedGarage(null)
+                                            }}
                                         >
-                                            <button className="crime-marker" onClick={affichageDetail}>
-                                                <img src={markerImg} alt="Street" />
-                                            </button>
-                                        </Marker>
-                                    );
-                                })}
+                                            <div>Garage Itex Africa Toute entière, Très prometteur</div>
+                                            {selectGarage}
+                                        </Popup>
+
+                                    </>
+                                ) : ""
+                            }
+
                         </ReactMapGL>
                     </div>
                 </main>

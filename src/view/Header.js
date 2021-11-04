@@ -30,7 +30,7 @@ function Header() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className="" to="/k">
+                            <NavLink className="" to="/garages">
                                 <span className="fa fa-book"></span>
                                 <span>Garages</span>
                             </NavLink>

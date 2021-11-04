@@ -52,7 +52,7 @@ function DashBoard() {
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <Link to="">Voir tout</Link>
+                                <Link to="/garages">Voir tout</Link>
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@ function DashBoard() {
                                 <span className="fa fa-gear"></span>
                                 <div className="">
                                     <h5>Garages actifs</h5>
-                                    <h4>56</h4>
+                                    <h4>0</h4>
                                 </div>
                             </div>
                             <div className="card-footer">
@@ -74,7 +74,7 @@ function DashBoard() {
                                 <span className="fa fa-gear"></span>
                                 <div className="">
                                     <h5>Garages non actifs</h5>
-                                    <h4>36</h4>
+                                    <h4>0</h4>
                                 </div>
                             </div>
                             <div className="card-footer">
@@ -105,20 +105,10 @@ function DashBoard() {
                                             <tbody>
                                                 {
                                                     data.filter((val) => {
-                                                        return val.nom.toLowerCase().includes(valueSearch);
                                                     }).map((val) => {
                                                         return (
                                                             <>
-                                                                <tr key={val.id}>
-                                                                    <td>{val.id}</td>
-                                                                    <td>{val.specialistes[0].nom} {val.specialistes[0].postnom} {val.specialistes[0].prenom}</td>
-                                                                    <td>{val.nom}</td>
-                                                                    <td>{val.specialistes[0].adresse}</td>
-                                                                    <td>ACTIF</td>
-                                                                    <td style={{ cursor: "pointer" }}>
-                                                                        <i className="fa fa-info-circle" style={{ fontSize: "25px", color: "#747881", }} onClick={data => { setElId(val.id); setId(2) }}></i>
-                                                                    </td>
-                                                                </tr>
+
                                                             </>
                                                         )
                                                     })
@@ -150,14 +140,13 @@ function DashBoard() {
                                                             <>
                                                                 {
                                                                     data.filter((val) => {
-                                                                        return val.nom.toLowerCase().includes(valueSearch);
                                                                     }).map((val) => {
-                                                                        if (val.id === elId) {
+                                                                        if (val.id_specialite === elId) {
                                                                             return (
                                                                                 <>
                                                                                     <span className="fa fa-info"></span>
                                                                                     <small style={{ fontSize: '14px' }}>Description</small>
-                                                                                    <h5 style={{ fontSize: "13px", marginTop: "10px" }}>{val.specialistes[0].description}</h5>
+                                                                                    <h5 style={{ fontSize: "13px", marginTop: "10px" }}></h5>
                                                                                 </>
                                                                             )
                                                                         }
@@ -174,14 +163,13 @@ function DashBoard() {
                                                         <>
                                                             {
                                                                 data.filter((val) => {
-                                                                    return val.nom.toLowerCase().includes(valueSearch);
                                                                 }).map((val) => {
-                                                                    if (val.id === elId) {
+                                                                    if (val.id_specialite === elId) {
                                                                         return (
                                                                             <>
                                                                                 <span className="fa fa-phone"></span>
                                                                                 <small style={{ fontSize: '14px', marginBottom: "12px" }}>Téléphone</small>
-                                                                                <h5 style={{ fontSize: "13px", marginLeft: "-86px", marginTop: "40px" }}>{val.specialistes[0].telephone}</h5>
+                                                                                <h5 style={{ fontSize: "13px", marginLeft: "-86px", marginTop: "40px" }}></h5>
 
                                                                             </>
                                                                         )
@@ -198,14 +186,13 @@ function DashBoard() {
                                                         <>
                                                             {
                                                                 data.filter((val) => {
-                                                                    return val.nom.toLowerCase().includes(valueSearch);
                                                                 }).map((val) => {
-                                                                    if (val.id === elId) {
+                                                                    if (val.id_specialite === elId) {
                                                                         return (
                                                                             <>
                                                                                 <span className="fa fa-spinner" style={{ marginTop: "-15px" }}></span>
                                                                                 <small style={{ fontSize: '14px', marginTop: "-20px" }}>Adresse</small>
-                                                                                <h5 style={{ fontSize: "13px", marginTop: "40px", marginLeft: "-70px" }}>{val.specialistes[0].adresse}</h5>
+                                                                                <h5 style={{ fontSize: "13px", marginTop: "40px", marginLeft: "-70px" }}></h5>
 
                                                                             </>
                                                                         )

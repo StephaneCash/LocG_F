@@ -37,14 +37,14 @@ function Specialistes() {
 
                     <br />
 
-                    <div className='contentTable' style={{ background: "white", height: "40vh", padding: "10px", overflow: "auto" }}>
+                    <div className='contentTable' style={{ background: "white", height: "42vh", padding: "10px", overflow: "auto" }}>
                         <div className="col-md-12">
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-9">
                                     <h5 style={{ padding: '10px', color: "#777" }}>Liste de Spécialistes à proximité</h5>
                                 </div>
-                                <div className="col-md-6">
-                                    <input type="text" className="form-control" placeholder="Recherche" style={{ width: "100%" }} />
+                                <div className="col-md-3">
+                                    <input type="text" className="form-control" placeholder="Rechercher" style={{ width: "100%" }} />
                                 </div>
                             </div>
                         </div>
