@@ -112,7 +112,7 @@ function DashBoard() {
                                         </tr>
                                     </thead>
 
-                                    {etat ?
+                                    {etat && data.length > 0 ?
                                         <>
                                             <tbody>
                                                 {
