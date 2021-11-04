@@ -3,12 +3,29 @@ import Header from "./Header";
 import UpComponent from "./UpComponent";
 import "../css/Specialistes.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddSpecialist from "../modal/AddSpecialist";
+import API_Specialistes from "../data/API_Specialistes";
 
 function Specialistes() {
 
     const [etatModalAdd, setEtatModalAdd] = useState(false);
+    const [data, setData] = useState([]);
+    const [etat, setEtat] = useState(false);
+    const [etatLoad, setEtatLoad] = useState(true)
+
+    const fetchData = () => {
+        API_Specialistes.getAllspecialistes().then(res => {
+            const specialistes = res.data;
+            setEtat(true);
+            setEtatLoad(false);
+            setData(specialistes);
+        })
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const showModalAddSpecialist = () => {
         setEtatModalAdd(true);

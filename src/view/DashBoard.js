@@ -2,7 +2,7 @@ import "../css/DashBoard.css";
 import Header from "./Header";
 import UpComponent from "./UpComponent";
 import { Link } from "react-router-dom";
-import API_Specialites from "../data/API_Specialites";
+import API_Garages from "../data/API_Garages";
 import { useState, useEffect } from "react";
 import LoadWaiting from "../modal/LoadWaiting";
 
@@ -16,11 +16,11 @@ function DashBoard() {
     const [etatLoad, setEtatLoad] = useState(true);
 
     const fetchData = () => {
-        API_Specialites.getAllSpecialites().then(res => {
-            const specialites = res.data;
+        API_Garages.getAllgarages().then(res => {
+            const garages = res.data;
             setEtat(true);
             setEtatLoad(false);
-            setData(specialites);
+            setData(garages);
         })
     }
 
@@ -28,7 +28,7 @@ function DashBoard() {
         fetchData();
     }, []);
 
-    console.log("El", elId)
+    console.log("El", data[2])
 
 
     return (
@@ -92,11 +92,10 @@ function DashBoard() {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Spécialistes</th>
+                                            <th>Nom garage</th>
                                             <th>Spécialités</th>
-                                            <th>Adresses</th>
-                                            <th>Statut</th>
-                                            <th>Détails</th>
+                                            <th>Adresse</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
 
@@ -104,11 +103,25 @@ function DashBoard() {
                                         <>
                                             <tbody>
                                                 {
-                                                    data.filter((val) => {
-                                                    }).map((val) => {
+                                                    data.map((val) => {
                                                         return (
                                                             <>
-
+                                                                <tr key={val.id_garage}>
+                                                                    <td>{val.id_garage}</td>
+                                                                    <td>{val.nom_garage}</td>
+                                                                    <td>{val.nom_specialite}</td>
+                                                                    <td>{val.adresse_garage}</td>
+                                                                    <td>
+                                                                        <button
+                                                                            className="btn btn-info"
+                                                                            onClick={function () {
+                                                                                setId(val.id_garage)
+                                                                            }}
+                                                                        >
+                                                                            Détail
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
                                                             </>
                                                         )
                                                     })
@@ -136,17 +149,18 @@ function DashBoard() {
                                             <>
                                                 <div className="summary-single">
                                                     <div>
-                                                        {id === 2 ?
+                                                        {id ?
                                                             <>
                                                                 {
-                                                                    data.filter((val) => {
-                                                                    }).map((val) => {
-                                                                        if (val.id_specialite === elId) {
+                                                                    data.map((val) => {
+                                                                        if (val.id_garage === id) {
                                                                             return (
                                                                                 <>
                                                                                     <span className="fa fa-info"></span>
-                                                                                    <small style={{ fontSize: '14px' }}>Description</small>
-                                                                                    <h5 style={{ fontSize: "13px", marginTop: "10px" }}></h5>
+                                                                                    <small style={{ fontSize: '14px' }}>Description garage</small>
+                                                                                    <h5 style={{ fontSize: "13px", marginTop: "10px" }}>
+                                                                                        {val.description_garage}
+                                                                                    </h5>
                                                                                 </>
                                                                             )
                                                                         }
@@ -159,17 +173,18 @@ function DashBoard() {
 
                                                 <div className="summary-single">
 
-                                                    {id === 2 ?
+                                                    {id ?
                                                         <>
                                                             {
-                                                                data.filter((val) => {
-                                                                }).map((val) => {
-                                                                    if (val.id_specialite === elId) {
+                                                                data.map((val) => {
+                                                                    if (val.id_garage === id) {
                                                                         return (
                                                                             <>
                                                                                 <span className="fa fa-phone"></span>
-                                                                                <small style={{ fontSize: '14px', marginBottom: "12px" }}>Téléphone</small>
-                                                                                <h5 style={{ fontSize: "13px", marginLeft: "-86px", marginTop: "40px" }}></h5>
+                                                                                <small style={{ fontSize: '14px', marginBottom: "12px" }}>Description spécialité</small>
+                                                                                <h5 style={{ fontSize: "13px", marginLeft: "-86px", marginTop: "40px" }}>
+                                                                                    {val.description_specialite}
+                                                                                </h5>
 
                                                                             </>
                                                                         )
@@ -182,7 +197,7 @@ function DashBoard() {
 
                                                 <div className="summary-single">
 
-                                                    {id === 2 ?
+                                                    {id ?
                                                         <>
                                                             {
                                                                 data.filter((val) => {
