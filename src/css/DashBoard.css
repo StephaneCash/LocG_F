@@ -280,29 +280,6 @@ tbody tr:nth-child(even) {
     padding-bottom: 5px;
 }
 
-.summary-single {
-    display: flex;
-    padding: .5rem 1rem;
-    align-items: center;
-}
-
-.summary-single span {
-    font-size: 15px;
-    color: #777;
-    padding-right: 10px;
-}
-
-.summary-single h5 {
-    color: var(--main-color);
-    font-size: 15px;
-    margin-bottom: 0rem !important;
-}
-
-.summary-single small {
-    font-weight: 700;
-    color: var(--text-grey);
-}
-
 .bday-flex {
     display: flex;
     align-items: center;
@@ -322,6 +299,11 @@ tbody tr:nth-child(even) {
     background-repeat: no-repeat;
     background-image: url("../img/img3.jpg");
     margin-right: 10px;
+}
+
+.summary-single {
+    color: var(--color-dark);
+    padding: 8px;
 }
 
 .text-center {

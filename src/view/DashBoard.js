@@ -28,7 +28,20 @@ function DashBoard() {
         fetchData();
     }, []);
 
-    console.log("El", data[2])
+    let b = 0;
+    let c = null;
+
+    console.log("DATA", data.length)
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].id_garage === data[2].id_garage) {
+            b = b + i;
+            console.log("Données ", data[i].nom)
+        }
+        if (b > 1) {
+            console.log("Doublon", data[i + 1])
+        }
+    }
 
 
     return (
@@ -109,6 +122,13 @@ function DashBoard() {
                                                                 <tr key={val.id_garage}>
                                                                     <td>{val.id_garage}</td>
                                                                     <td>{val.nom_garage}</td>
+                                                                    {
+                                                                        val.id_garage === val.id_garage ? (
+                                                                            <>
+
+                                                                            </>
+                                                                        ) : ""
+                                                                    }
                                                                     <td>{val.nom_specialite}</td>
                                                                     <td>{val.adresse_garage}</td>
                                                                     <td>
@@ -156,11 +176,12 @@ function DashBoard() {
                                                                         if (val.id_garage === id) {
                                                                             return (
                                                                                 <>
-                                                                                    <span className="fa fa-info"></span>
-                                                                                    <small style={{ fontSize: '14px' }}>Description garage</small>
-                                                                                    <h5 style={{ fontSize: "13px", marginTop: "10px" }}>
+                                                                                    <span style={{ fontSize: "14px" }}>
+                                                                                        Description garage
+                                                                                    </span>
+                                                                                    <div style={{ fontSize: "13px", marginTop: "10px" }}>
                                                                                         {val.description_garage}
-                                                                                    </h5>
+                                                                                    </div>
                                                                                 </>
                                                                             )
                                                                         }
@@ -180,11 +201,12 @@ function DashBoard() {
                                                                     if (val.id_garage === id) {
                                                                         return (
                                                                             <>
-                                                                                <span className="fa fa-phone"></span>
-                                                                                <small style={{ fontSize: '14px', marginBottom: "12px" }}>Description spécialité</small>
-                                                                                <h5 style={{ fontSize: "13px", marginLeft: "-86px", marginTop: "40px" }}>
+                                                                                <span style={{ fontSize: "14px" }}>
+                                                                                    Description spécialité
+                                                                                </span>
+                                                                                <div style={{ fontSize: "13px", marginTop: "10px" }}>
                                                                                     {val.description_specialite}
-                                                                                </h5>
+                                                                                </div>
 
                                                                             </>
                                                                         )
