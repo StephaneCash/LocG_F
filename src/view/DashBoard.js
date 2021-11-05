@@ -34,7 +34,7 @@ function DashBoard() {
     console.log("DATA", data.length)
 
     for (let i = 0; i < data.length; i++) {
-        if (data[i].id_garage === data[2].id_garage) {
+        if (data[i].id === data[2].id) {
             b = b + i;
             console.log("Données ", data[i].nom)
         }
@@ -119,11 +119,11 @@ function DashBoard() {
                                                     data.map((val) => {
                                                         return (
                                                             <>
-                                                                <tr key={val.id_garage}>
-                                                                    <td>{val.id_garage}</td>
-                                                                    <td>{val.nom_garage}</td>
+                                                                <tr key={val.id}>
+                                                                    <td>{val.id}</td>
+                                                                    <td>{val.nom}</td>
                                                                     {
-                                                                        val.id_garage === val.id_garage ? (
+                                                                        val.id === val.id ? (
                                                                             <>
 
                                                                             </>
@@ -135,7 +135,7 @@ function DashBoard() {
                                                                         <button
                                                                             className="btn btn-info"
                                                                             onClick={function () {
-                                                                                setId(val.id_garage)
+                                                                                setId(val.id)
                                                                             }}
                                                                         >
                                                                             Détail
@@ -173,7 +173,7 @@ function DashBoard() {
                                                             <>
                                                                 {
                                                                     data.map((val) => {
-                                                                        if (val.id_garage === id) {
+                                                                        if (val.id === id) {
                                                                             return (
                                                                                 <>
                                                                                     <span style={{ fontSize: "14px" }}>
@@ -198,7 +198,7 @@ function DashBoard() {
                                                         <>
                                                             {
                                                                 data.map((val) => {
-                                                                    if (val.id_garage === id) {
+                                                                    if (val.id === id) {
                                                                         return (
                                                                             <>
                                                                                 <span style={{ fontSize: "14px" }}>
