@@ -12,7 +12,7 @@ function Header() {
                         <span className="fa fa-car"></span>
                         <span style={{ fontSize: "20px" }}> Loc_Dép.</span>
                     </h3>
-                    <label for="sidebar-toggle" className="fa fa-list fa-2x"></label>
+                    <label htmlFor="sidebar-toggle" className="fa fa-list fa-2x"></label>
                 </div>
 
                 <div className="sidebar-menu">
@@ -20,7 +20,7 @@ function Header() {
                         <li>
                             <NavLink className="" to="/">
                                 <span className="fa fa-home"></span>
-                                <span>Accueil</span>
+                                <span>Dashboard</span>
                             </NavLink>
                         </li>
                         <li>
@@ -36,9 +36,9 @@ function Header() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className="" to="/j">
+                            <NavLink className="" to="/specialites">
                                 <span className="fa fa-folder"></span>
-                                <span>Leavels</span>
+                                <span>Spécialités</span>
                             </NavLink>
                         </li>
                         <li>

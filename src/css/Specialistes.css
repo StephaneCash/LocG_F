@@ -1,41 +1,4 @@
-.inputSearch, .btnAj {
-    display: inline-block;
-    vertical-align: top;
-}
-
-.btnAj {
-    margin: 5px 0;
-    width: 60%;
-}
-
-.inputSearch {
-    width: 40%;
-}
-
-.detailSpec {
-    box-shadow: 1px 1px 1px silver;
-    margin-top: 10px;
-    background-color: white;
-    height: 30vh;
-    text-align: center;
-    padding: 10px;
-    border: 1px solid silver;
-}
-
 .contentTable {
     border: 1px solid silver;
     box-shadow: 1px 1px 1px silver;
-}
-
-.detailSpec .content {
-    margin-top: 10px;
-    padding: 10px;
-    height: 20vh;
-    line-height: 2vh
-}
-
-.content .fa {
-    color: #777;
-    font-size: 17px;
-    margin-top: 25px;
 }

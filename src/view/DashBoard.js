@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import API_Garages from "../data/API_Garages";
 import { useState, useEffect } from "react";
 import LoadWaiting from "../modal/LoadWaiting";
+import API_Specialistes from "../data/API_Specialistes";
 
 function DashBoard() {
 
@@ -14,6 +15,7 @@ function DashBoard() {
     const [id, setId] = useState(0);
     const [elId, setElId] = useState("");
     const [etatLoad, setEtatLoad] = useState(true);
+    const [specialistes, setSpecialiste] = useState([]);
 
     const fetchData = () => {
         API_Garages.getAllgarages().then(res => {
@@ -24,25 +26,24 @@ function DashBoard() {
         })
     }
 
+    const fetchDataSpec = () => {
+        API_Specialistes.getAllspecialistes().then(res => {
+            const specialistes = res.data;
+            setEtat(true);
+            setEtatLoad(false);
+            setSpecialiste(specialistes);
+        })
+    }
+
     useEffect(() => {
         fetchData();
     }, []);
 
-    let b = 0;
-    let c = null;
+    useEffect(() => {
+        fetchDataSpec();
+    }, [])
 
-    console.log("DATA", data.length)
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id === data[2].id) {
-            b = b + i;
-            console.log("Données ", data[i].nom)
-        }
-        if (b > 1) {
-            console.log("Doublon", data[i + 1])
-        }
-    }
-
+    console.log("DATA", data);
 
     return (
         <>
@@ -59,7 +60,7 @@ function DashBoard() {
                         <div className="card-single">
                             <div className="card-body">
                                 <span className="fa fa-gear"></span>
-                                <div className="">
+                                <div>
                                     <h5>Nombre de Garages</h5>
                                     <h4>{data.length}</h4>
                                 </div>
@@ -72,8 +73,8 @@ function DashBoard() {
                         <div className="card-single">
                             <div className="card-body">
                                 <span className="fa fa-gear"></span>
-                                <div className="">
-                                    <h5>Garages actifs</h5>
+                                <div>
+                                    <h5>Spécialités</h5>
                                     <h4>0</h4>
                                 </div>
                             </div>
@@ -85,13 +86,13 @@ function DashBoard() {
                         <div className="card-single">
                             <div className="card-body">
                                 <span className="fa fa-gear"></span>
-                                <div className="">
-                                    <h5>Garages non actifs</h5>
-                                    <h4>0</h4>
+                                <div>
+                                    <h5>Spécialistes</h5>
+                                    <h4>{specialistes.length}</h4>
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <Link to="">Voir tout</Link>
+                                <Link to="/specialistes">Voir tout</Link>
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@ function DashBoard() {
                                         <tr>
                                             <th>#</th>
                                             <th>Nom garage</th>
-                                            <th>Spécialités</th>
+                                            <th style={{ width: "300px" }}>Spécialités</th>
                                             <th>Adresse</th>
                                             <th>Action</th>
                                         </tr>
@@ -122,20 +123,22 @@ function DashBoard() {
                                                                 <tr key={val.id}>
                                                                     <td>{val.id}</td>
                                                                     <td>{val.nom}</td>
-                                                                    {
-                                                                        val.id === val.id ? (
-                                                                            <>
-
-                                                                            </>
-                                                                        ) : ""
-                                                                    }
-                                                                    <td>{val.nom_specialite}</td>
-                                                                    <td>{val.adresse_garage}</td>
+                                                                    <td style={{ width: "auto" }}>
+                                                                        {
+                                                                            val.specialites.map((donnee) => {
+                                                                                return (
+                                                                                    <>
+                                                                                        <span style={{ border: "1px solid silver", padding: "4px" }}> {donnee.nom} </span> &nbsp; &nbsp;
+                                                                                    </>
+                                                                                )
+                                                                            })
+                                                                        }
+                                                                    </td>
+                                                                    <td>{val.adresse}</td>
                                                                     <td>
                                                                         <button
                                                                             className="btn btn-info"
                                                                             onClick={function () {
-                                                                                setId(val.id)
                                                                             }}
                                                                         >
                                                                             Détail
@@ -180,7 +183,7 @@ function DashBoard() {
                                                                                         Description garage
                                                                                     </span>
                                                                                     <div style={{ fontSize: "13px", marginTop: "10px" }}>
-                                                                                        {val.description_garage}
+
                                                                                     </div>
                                                                                 </>
                                                                             )
@@ -205,7 +208,7 @@ function DashBoard() {
                                                                                     Description spécialité
                                                                                 </span>
                                                                                 <div style={{ fontSize: "13px", marginTop: "10px" }}>
-                                                                                    {val.description_specialite}
+
                                                                                 </div>
 
                                                                             </>
@@ -224,7 +227,7 @@ function DashBoard() {
                                                             {
                                                                 data.filter((val) => {
                                                                 }).map((val) => {
-                                                                    if (val.id_specialite === elId) {
+                                                                    if (val.id === id) {
                                                                         return (
                                                                             <>
                                                                                 <span className="fa fa-spinner" style={{ marginTop: "-15px" }}></span>

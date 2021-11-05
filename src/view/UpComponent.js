@@ -11,21 +11,20 @@ function UpComponent(props) {
 
     return (
         <>
-            <div class="main-content">
+            <div className="main-content">
 
                 <header>
-                    <div class="searchInput">
-                        <span class="fa fa-search"></span>
-                        <input type="saerch" placeholder="Rechercher" onChange={e => setValueInput(e.target.value)} />
+                    <div className="searchInput">
+
                     </div>
 
-                    <div class="social-icons">
-                        <span class="fa fa-bell"></span>
-                        <span class="fa fa-comment"></span>
+                    <div className="social-icons">
+                        <span className="fa fa-bell"></span>
+                        <span className="fa fa-comment"></span>
                         <div>
                             <img src={cash} />
                             <span>Se déconnecter</span>
-                            <span><i class="fa fa-power-off" style={{ color: "#282c34", fontSize: "19px" }}></i></span>
+                            <span><i className="fa fa-power-off" style={{ color: "#282c34", fontSize: "19px" }}></i></span>
                         </div>
                     </div>
                 </header>

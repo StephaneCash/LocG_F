@@ -1,31 +1,41 @@
 import "../css/DashBoard.css";
 import Header from "./Header";
 import UpComponent from "./UpComponent";
-import useSwr from "swr";
-import ReactMapGL, { Marker, FlyToInterpolator, Popup, FullscreenControl, NavigationControl } from "react-map-gl";
-import useSupercluster from "use-supercluster";
+import ReactMapGL, { Marker, Popup, FullscreenControl, NavigationControl } from "react-map-gl";
 import "../css/FindGarage.css";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import markerImg from "../img/marker.png";
-import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
-import * as parkDate from "../data/dataVille.json";
-import Geocoder from 'react-mapbox-gl-geocoder';
-
-const fetcher = (...args) => fetch(...args).then(response => response.json());
+import LoadWaiting from "../modal/LoadWaiting";
+import API_Garages from "../data/API_Garages";
 
 function FindGarage() {
+
+    const [etatLoad, setEtatLoad] = useState(true);
+    const [data, setData] = useState([]);
+
+    const fetchData = () => {
+        API_Garages.getAllgarages().then(res => {
+            const garages = res.data;
+            setEtatLoad(false);
+            setData(garages);
+        })
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const [viewport, setViewport] = useState({
         latitude: -4.441931,
         longitude: 15.266293,
         width: "auto",
-        height: "80vh",
+        height: "75vh",
         zoom: 10,
         pitch: 0
     });
 
     const [selectGarage, setSelectedGarage] = useState(null);
-    const a = 'Bonjour';
+    const a = 'Data no disponible !';
 
     const fullscreenControlStyle = {
         right: 10,
@@ -37,10 +47,6 @@ function FindGarage() {
         right: 10
     }
 
-    const params = {
-        country: "ca"
-    }
-
     return (
         <>
             <Header></Header>
@@ -48,8 +54,18 @@ function FindGarage() {
                 <UpComponent />
                 <main>
                     <div className="mainDiv">
-                        Find
+                        <p>
+                            Find des garages à proximité
+                        </p>
 
+                        <p>
+                            <input
+                                type="search"
+                                className="form-control"
+                                placeholder="Entrer le nom de votre panne"
+                                style={{ width: "40%" }}
+                            />
+                        </p>
 
                         <ReactMapGL
                             mapStyle="mapbox://styles/mapbox/streets-v11"
@@ -68,7 +84,7 @@ function FindGarage() {
 
                             >
                                 <div style={{ color: "red" }}>Markeur1</div>
-                                <button class="btn btn-info" onClick={(e) => {
+                                <button className="btn btn-info" onClick={(e) => {
                                     e.preventDefault();
                                     setSelectedGarage(a);
                                 }} >
@@ -77,16 +93,16 @@ function FindGarage() {
                             </Marker>
 
                             <Marker
-                                latitude={45.4311}
-                                longitude={-75.6903}
+                                latitude={-4.304330}
+                                longitude={15.307230}
 
                             >
-                                <div style={{ color: "red" }}>Markeur1</div>
-                                <button class="btn btn-info" onClick={(e) => {
+                                <div>Garage Gombe</div>
+                                <button className="btn btn" onClick={(e) => {
                                     e.preventDefault();
                                     setSelectedGarage(a);
                                 }} >
-                                    <img style={{ width: "30px" }} src={markerImg} />
+                                    <img style={{ width: "13px" }} src={markerImg} />
                                 </button>
                             </Marker>
 
@@ -94,13 +110,12 @@ function FindGarage() {
                                 selectGarage ? (
                                     <>
                                         <Popup
-                                            latitude={45.4371}
-                                            longitude={-75.6203}
+                                            latitude={-4.304330}
+                                            longitude={15.307230}
                                             onClose={() => {
                                                 setSelectedGarage(null)
                                             }}
                                         >
-                                            <div>Garage Itex Africa Toute entière, Très prometteur</div>
                                             {selectGarage}
                                         </Popup>
 
@@ -110,6 +125,9 @@ function FindGarage() {
 
                         </ReactMapGL>
                     </div>
+                    <LoadWaiting
+                        show={etatLoad}
+                    />
                 </main>
             </div>
         </>
