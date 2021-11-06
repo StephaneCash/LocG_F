@@ -4,65 +4,68 @@ import "../css/AddSpecialist.css";
 
 function AddSpecialist(props) {
 
+    const [etatB, setEtatB] = useState(false);
 
+    const addButton = (e) => {
+        e.preventDefault();
+        setEtatB(true);
+    }
 
     return (
         <>
             <Modal show={props.show} className="addSpecial">
-                <Modal.Header>
-                    <i className="fa fa-plus"> Ajouter un nouveau spécialiste</i>
+                <Modal.Header className="headerModal">
+                    Ajouter un nouveau spécialiste
                 </Modal.Header>
                 <Modal.Body>
                     <form>
-                        <div className="col-md-12">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Entrer un nom</label>
-                                        <input type="text" className="form-control" placeholder="Entrer un nom" value="" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Entrer un postnom</label>
-                                        <input type="text" className="form-control" placeholder="Entrer un postnom" value="" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Entrer un prénom</label>
-                                        <input type="text" className="form-control" placeholder="Entrer un prénom" value="" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Entrer une adresse</label>
-                                        <textarea className="form-control" placeholder="Adresse...">
+                        <div className=" formAddSpecialist">
+                            <div className="form-group">
+                                <label>Entrer un nom</label>
+                                <input type="text" className="form-control" placeholder="Entrer un nom" value="" />
+                            </div>
+                            <div className="form-group">
+                                <label>Entrer un postnom</label>
+                                <input type="text" className="form-control" placeholder="Entrer un postnom" value="" />
+                            </div>
+                            <div className="form-group">
+                                <label>Entrer un prénom</label>
+                                <input type="text" className="form-control" placeholder="Entrer un prénom" value="" />
+                            </div>
 
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Entrer une description</label>
-                                        <textarea className="form-control" placeholder="Description">
-
-                                        </textarea>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Entrer un numéro de téléphone</label>
-                                        <input type="number" className="form-control" placeholder="Entrer un numéro de téléphone" value="" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Chosir une photo</label>
-                                        <input type="file" className="form-control" value="" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Choisir une ou plusieures spécialités</label>
-                                        <input type="text" className="form-control" placeholder="Entrer une adresse" value="" />
-                                    </div>
-                                </div>
+                            <div className="form-group">
+                                <label>Entrer un numéro de téléphone</label>
+                                <input type="number" className="form-control" placeholder="Entrer un numéro de téléphone" value="" />
+                            </div>
+                            <div className="form-group">
+                                <label>Choisir une ou plusieures spécialités</label>
+                                <select className="form-control" placeholder="Entrer une adresse" value="">
+                                    <option>--Choisir une spécialité--</option>
+                                </select>
                             </div>
                         </div>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
                     <button className="btn btn-danger" onClick={props.close} >Annuler</button>
-                    <button className="btn btn" style={{ backgroundColor: '#027581', color: "white" }}>Ajouter</button>
+                    {
+                        etatB === false ? (
+                            <><button
+                                className="btn btn"
+                                onClick={addButton}
+                                style={{ backgroundColor: '#027581', color: "white", marginRight: "16px" }}>Ajouter</button></>
+                        ) : ""
+                    }
+                    {
+                        etatB === true ? (
+                            <>
+                                <button
+                                    className="btn btn-success"
+                                    style={{ color: "white", marginRight: "16px" }}
+                                >Ajout en cours... <i className='fa fa-refresh fa-spin'></i> </button>
+                            </>
+                        ) : ""
+                    }
                 </Modal.Footer>
             </Modal>
         </>
