@@ -12,6 +12,7 @@ function FindGarage() {
 
     const [etatLoad, setEtatLoad] = useState(true);
     const [data, setData] = useState([]);
+    const [valueInput, setValueInput] = useState("");
 
     const fetchData = () => {
         API_Garages.getAllgarages().then(res => {
@@ -47,6 +48,14 @@ function FindGarage() {
         right: 10
     }
 
+    const handleInput = (e) => {
+        let value = e.target.value.toLowerCase();
+        setValueInput(value)
+        console.log("value:", value)
+    }
+
+    console.log('DATA', data)
+
     return (
         <>
             <Header></Header>
@@ -64,6 +73,7 @@ function FindGarage() {
                                 className="form-control"
                                 placeholder="Entrer le nom de votre panne"
                                 style={{ width: "40%" }}
+                                onChange={handleInput}
                             />
                         </p>
 
@@ -78,40 +88,40 @@ function FindGarage() {
                         >
                             <FullscreenControl style={fullscreenControlStyle} />
                             <NavigationControl style={navControlStyle} />
-                            <Marker
-                                latitude={45.4371}
-                                longitude={-75.6203}
+                            {
+                                etatLoad === false ?
+                                    data.filter((val) => {
+                                        return val.nom.toLowerCase().includes(valueInput);
+                                    }).map((val) => {
+                                        return (
+                                            <>
+                                                <Marker
+                                                    key={val.id}
+                                                    latitude={val.latitude}
+                                                    longitude={val.longitude}
 
-                            >
-                                <div style={{ color: "red" }}>Markeur1</div>
-                                <button className="btn btn-info" onClick={(e) => {
-                                    e.preventDefault();
-                                    setSelectedGarage(a);
-                                }} >
-                                    <img style={{ width: "30px" }} src={markerImg} />
-                                </button>
-                            </Marker>
+                                                >
+                                                    <div>{val.nom}</div>
+                                                    <button className="btn btn" onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setSelectedGarage(a);
+                                                    }} >
+                                                        <img style={{ width: "13px" }} src={markerImg} />
+                                                    </button>
+                                                </Marker>
+                                            </>
+                                        )
+                                    })
 
-                            <Marker
-                                latitude={-4.304330}
-                                longitude={15.307230}
-
-                            >
-                                <div>Garage Gombe</div>
-                                <button className="btn btn" onClick={(e) => {
-                                    e.preventDefault();
-                                    setSelectedGarage(a);
-                                }} >
-                                    <img style={{ width: "13px" }} src={markerImg} />
-                                </button>
-                            </Marker>
+                                    : ""
+                            }
 
                             {
                                 selectGarage ? (
                                     <>
                                         <Popup
-                                            latitude={-4.304330}
-                                            longitude={15.307230}
+                                            latitude={-4.441931}
+                                            longitude={15.266293}
                                             onClose={() => {
                                                 setSelectedGarage(null)
                                             }}
@@ -119,9 +129,9 @@ function FindGarage() {
                                             {selectGarage}
                                         </Popup>
 
-                                    </>
-                                ) : ""
+                                    </>) : ""
                             }
+
 
                         </ReactMapGL>
                     </div>
