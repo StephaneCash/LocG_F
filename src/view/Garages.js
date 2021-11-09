@@ -5,6 +5,7 @@ import "../css/Garages.css";
 import React, { useState, useEffect } from "react";
 import API_Garages from "../data/API_Garages";
 import LoadWaiting from "../modal/LoadWaiting";
+import AddGarage from "../modal/AddGarage";
 
 
 function FindGarage() {
@@ -13,6 +14,7 @@ function FindGarage() {
     const [etat, setEtat] = useState(false);
     const [etatLoad, setEtatLoad] = useState(true);
     const [valueInput, setValueInput] = useState("");
+    const [modal, setModal] = useState(false);
 
     const fetchData = () => {
         API_Garages.getAllgarages().then(res => {
@@ -35,6 +37,14 @@ function FindGarage() {
         setValueInput(value);
     }
 
+    const showModalAdd = () => {
+        setModal(true);
+    }
+
+    const closeModalAdd = () => {
+        setModal(false);
+    }
+
     return (
         <>
             <Header></Header>
@@ -48,7 +58,7 @@ function FindGarage() {
                         <div className="col-md-12" style={{ paddingLeft: "0px", paddingRight: "0px", marginBottom: "10px" }}>
                             <div className="row">
                                 <div className="col-md-8">
-                                    <button className="btn btn-info">Ajouter un nouveau garage</button>
+                                    <button className="btn btn-info" onClick={showModalAdd}>Ajouter un nouveau garage</button>
                                 </div>
                                 <div className="col-md-4">
                                     <input type="search" placeholder="Rechercher" className="form-control" onChange={handleSearch} />
@@ -126,6 +136,10 @@ function FindGarage() {
                     </div>
                     <LoadWaiting
                         show={etatLoad}
+                    />
+                    <AddGarage
+                        show={modal}
+                        close={closeModalAdd}
                     />
                 </main>
             </div>

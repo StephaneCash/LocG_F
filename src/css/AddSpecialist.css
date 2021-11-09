@@ -1,12 +1,12 @@
 .addSpecial .modal-dialog {
     height: auto;
     font-family: Tahoma;
+    max-width: 50%;
 }
 
 .addSpecial .modal-content {
     height: auto;
     position: absolute;
-    max-width: 100%;
     left: 50%;
     transform: translateX(-50%);
 }
