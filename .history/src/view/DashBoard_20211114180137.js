@@ -139,7 +139,7 @@ function DashBoard() {
                                                                         <button
                                                                             className="btn btn-info"
                                                                             onClick={function () {
-                                                                                alert(val.id)
+                                                                                alert(id)
                                                                             }}
                                                                         >
                                                                             Détail

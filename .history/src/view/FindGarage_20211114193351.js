@@ -69,13 +69,11 @@ function FindGarage() {
                             Find des garages à proximité
                         </p>
 
-                        
-
                         <p>
                             <input
                                 type="search"
                                 className="form-control"
-                                placeholder="Entrer le nom de votre panne ou la marque du véhicule"
+                                placeholder="Entrer le nom de votre panne"
                                 style={{ width: "40%" }}
                                 onChange={handleInput}
                             />
@@ -94,41 +92,34 @@ function FindGarage() {
                                     >
                                         <FullscreenControl style={fullscreenControlStyle} />
                                         <NavigationControl style={navControlStyle} />
-                                        {
-                                            valueInput.length > 0 ? (
-                                                <>
-                                                    {
-                                                        etatLoad === false ?
-                                                            data.filter((val) => {
-                                                                return val.nom.toLowerCase().includes(valueInput);
-                                                            }).map((val) => {
-                                                                return (
-                                                                    <>
-                                                                        <Marker
-                                                                            key={val.id}
-                                                                            latitude={val.latitude}
-                                                                            longitude={val.longitude}
+                                        { 
+                                            etatLoad === false ?
+                                                data.filter((val) => {
+                                                    return val.nom.toLowerCase().includes(valueInput);
+                                                }).map((val) => {
+                                                    return (
+                                                        <>
+                                                            <Marker
+                                                                key={val.id}
+                                                                latitude={val.latitude}
+                                                                longitude={val.longitude}
 
-                                                                        >
-                                                                            <div>{val.nom}</div>
-                                                                            <button className="btn btn" onClick={(e) => {
-                                                                                e.preventDefault();
-                                                                                setSelectedGarage(a);
-                                                                            }} >
-                                                                                <img style={{ width: "13px" }} src={markerImg} />
-                                                                            </button>
-                                                                        </Marker>
-                                                                    </>
-                                                                )
-                                                            })
+                                                            >
+                                                                <div>{val.nom}</div>
+                                                                <button className="btn btn" onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    setSelectedGarage(a);
+                                                                }} >
+                                                                    <img style={{ width: "13px" }} src={markerImg} />
+                                                                </button>
+                                                            </Marker>
+                                                        </>
+                                                    )
+                                                })
 
-                                                            : ""
-                                                    }
-
-                                                </>
-                                            ) : ""
+                                                : ""
                                         }
-                                       
+
                                         {
                                             selectGarage ? (
                                                 <>

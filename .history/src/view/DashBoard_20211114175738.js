@@ -100,7 +100,7 @@ function DashBoard() {
                     <section className="recent">
                         <div className="activity-grid">
                             <div className="activity-card">
-                                <h3 style={{ fontSize: "20px" }}>Liste de Garages de LUKUNGA </h3>
+                                <h3 style={{ fontSize: "20px" }}>Listes de Garages </h3>
 
                                 <table className="table table-bordered">
                                     <thead>
@@ -139,7 +139,6 @@ function DashBoard() {
                                                                         <button
                                                                             className="btn btn-info"
                                                                             onClick={function () {
-                                                                                alert(val.id)
                                                                             }}
                                                                         >
                                                                             Détail

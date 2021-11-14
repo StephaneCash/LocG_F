@@ -75,7 +75,7 @@ function FindGarage() {
                             <input
                                 type="search"
                                 className="form-control"
-                                placeholder="Entrer le nom de votre panne ou la marque du véhicule"
+                                placeholder="Entrer le nom de votre panne"
                                 style={{ width: "40%" }}
                                 onChange={handleInput}
                             />
@@ -95,7 +95,7 @@ function FindGarage() {
                                         <FullscreenControl style={fullscreenControlStyle} />
                                         <NavigationControl style={navControlStyle} />
                                         {
-                                            valueInput.length > 0 ? (
+                                            verifData === true ? (
                                                 <>
                                                     {
                                                         etatLoad === false ?
