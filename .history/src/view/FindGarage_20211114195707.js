@@ -9,7 +9,6 @@ import LoadWaiting from "../modal/LoadWaiting";
 import API_Garages from "../data/API_Garages";
 import DetailGarage from "../modal/DetailGarage";
 
-
 function FindGarage() {
 
     const [etatLoad, setEtatLoad] = useState(true);
@@ -17,7 +16,6 @@ function FindGarage() {
     const [valueInput, setValueInput] = useState("");
     const [verifData, setVerifData] = useState(false);
     const [etatDetail, setEtatDetail] = useState(false)
-    const [id, setId] = useState("");
 
     const fetchData = () => {
         API_Garages.getAllgarages().then(res => {
@@ -58,10 +56,6 @@ function FindGarage() {
         setValueInput(value)
         console.log("value:", value)
         setVerifData(true)
-    }
-
-    const closeModal = () => {
-        setEtatDetail(false)
     }
 
     console.log('DATA', data)
@@ -122,8 +116,6 @@ function FindGarage() {
                                                                             <button className="btn btn" onClick={(e) => {
                                                                                 e.preventDefault();
                                                                                 setSelectedGarage(a);
-                                                                                setEtatDetail(true)
-                                                                                setId(val.id)
                                                                             }} >
                                                                                 <img style={{ width: "13px" }} src={markerImg} />
                                                                             </button>
@@ -167,8 +159,6 @@ function FindGarage() {
                     />
                     <DetailGarage
                         show={etatDetail}
-                        close={closeModal}
-                        id={id}
                     />
                 </main>
             </div>

@@ -168,7 +168,6 @@ function FindGarage() {
                     <DetailGarage
                         show={etatDetail}
                         close={closeModal}
-                        id={id}
                     />
                 </main>
             </div>

@@ -60,10 +60,6 @@ function FindGarage() {
         setVerifData(true)
     }
 
-    const closeModal = () => {
-        setEtatDetail(false)
-    }
-
     console.log('DATA', data)
 
     return (
@@ -123,7 +119,7 @@ function FindGarage() {
                                                                                 e.preventDefault();
                                                                                 setSelectedGarage(a);
                                                                                 setEtatDetail(true)
-                                                                                setId(val.id)
+                                                                                alert(val.id)
                                                                             }} >
                                                                                 <img style={{ width: "13px" }} src={markerImg} />
                                                                             </button>
@@ -167,8 +163,6 @@ function FindGarage() {
                     />
                     <DetailGarage
                         show={etatDetail}
-                        close={closeModal}
-                        id={id}
                     />
                 </main>
             </div>

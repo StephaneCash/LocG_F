@@ -7,8 +7,6 @@ import React, { useState, useEffect } from "react";
 import markerImg from "../img/marker.png";
 import LoadWaiting from "../modal/LoadWaiting";
 import API_Garages from "../data/API_Garages";
-import DetailGarage from "../modal/DetailGarage";
-
 
 function FindGarage() {
 
@@ -16,8 +14,6 @@ function FindGarage() {
     const [data, setData] = useState([]);
     const [valueInput, setValueInput] = useState("");
     const [verifData, setVerifData] = useState(false);
-    const [etatDetail, setEtatDetail] = useState(false)
-    const [id, setId] = useState("");
 
     const fetchData = () => {
         API_Garages.getAllgarages().then(res => {
@@ -58,10 +54,6 @@ function FindGarage() {
         setValueInput(value)
         console.log("value:", value)
         setVerifData(true)
-    }
-
-    const closeModal = () => {
-        setEtatDetail(false)
     }
 
     console.log('DATA', data)
@@ -122,8 +114,6 @@ function FindGarage() {
                                                                             <button className="btn btn" onClick={(e) => {
                                                                                 e.preventDefault();
                                                                                 setSelectedGarage(a);
-                                                                                setEtatDetail(true)
-                                                                                setId(val.id)
                                                                             }} >
                                                                                 <img style={{ width: "13px" }} src={markerImg} />
                                                                             </button>
@@ -158,17 +148,12 @@ function FindGarage() {
 
                                     </ReactMapGL>
                                 </>
-                            ) : <h4>Entrer la marque ou une panne de votre véhicule, par exemple : " Mercedes ou pneus " </h4>
+                            ) : <h4>Entrer la marque ou une panne de votre véhicule, par exemple :<em>'Mercedes ou pneus'</em> </h4>
                         }
                        
                     </div>
                     <LoadWaiting
                         show={etatLoad}
-                    />
-                    <DetailGarage
-                        show={etatDetail}
-                        close={closeModal}
-                        id={id}
                     />
                 </main>
             </div>

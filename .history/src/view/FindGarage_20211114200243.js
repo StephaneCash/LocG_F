@@ -60,10 +60,6 @@ function FindGarage() {
         setVerifData(true)
     }
 
-    const closeModal = () => {
-        setEtatDetail(false)
-    }
-
     console.log('DATA', data)
 
     return (
@@ -167,8 +163,6 @@ function FindGarage() {
                     />
                     <DetailGarage
                         show={etatDetail}
-                        close={closeModal}
-                        id={id}
                     />
                 </main>
             </div>
