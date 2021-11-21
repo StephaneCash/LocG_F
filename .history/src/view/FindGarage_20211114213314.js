@@ -77,6 +77,8 @@ function FindGarage() {
                             Find des garages à proximité
                         </p>
 
+                        
+
                         <p>
                             <input
                                 type="search"
@@ -141,7 +143,7 @@ function FindGarage() {
                                 </>
                             ) : <h4>Entrer la marque ou une panne de votre véhicule, par exemple : " Mercedes ou pneus " </h4>
                         }
-
+                       
                     </div>
                     <LoadWaiting
                         show={etatLoad}

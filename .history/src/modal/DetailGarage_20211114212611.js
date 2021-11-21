@@ -24,7 +24,7 @@ function DetailGarage(props) {
 
     return (
         <div>
-            <Modal show={props.show} className="">
+            <Modal show={props.show} className="waitingModal">
                 <Modal.Header className="headerModal">
                     Détails Garage
                 </Modal.Header>
