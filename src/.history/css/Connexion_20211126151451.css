@@ -1,0 +1,46 @@
+.connexion {
+    border: 1px solid silver;
+    height: 70vh;
+    max-width: 27%;
+    margin: 10vh auto;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: #027581;
+    color: white;
+}
+
+hr {
+    color: white !important;
+}
+
+.connexion .form-check-input {
+    margin-top: 25px;
+}
+
+.connexion .labelCheckBox {
+    margin-left: 15px;
+    margin-top: 22px;
+}
+
+.connexion .buttonConnexion {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #027581;
+    border: 1px solid silver;
+    color: white;
+}
+
+.connexion .blockContenantLiconeUser {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.buttonConnexion:hover {
+    background-color: none;
+}
+
+.viewPassword{
+    float: right;
+    margin-top:-20px;
+    color:black;
+}
