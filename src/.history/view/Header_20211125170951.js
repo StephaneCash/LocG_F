@@ -9,7 +9,7 @@ function Header() {
             <div className='sidebar'>
                 <div className="sidebar-header">
                     <h3 className="brand">
-                        <span className="fa fa-car"></span>
+                        <span className="fa fa-bus"></span>
                         <span style={{ fontSize: "20px" }}> Loc_Dép.</span>
                     </h3>
                     <label htmlFor="sidebar-toggle" className="fa fa-list fa-2x"></label>
@@ -42,8 +42,14 @@ function Header() {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink className="" to="/i">
+                                <span className="fa fa-chevron-right"></span>
+                                <span>Projets</span>
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink className="" to="/kk">
-                                <span className="fa fa-user"></span>
+                                <span className="fa fa-car-crash"></span>
                                 <span>Users</span>
                             </NavLink>
                         </li>

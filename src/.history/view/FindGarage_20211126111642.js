@@ -27,6 +27,17 @@ function FindGarage() {
 
     const key = "pk.eyJ1Ijoic3RlcGhhbmVjYXNoIiwiYSI6ImNrdjhuN291MjRrYjQyd3A2YjlzcXp3eGUifQ.TD4eitBbhALsXRy9pWwNug"
 
+    const url = `https://api.mapbox.com/directions/v5/mapbox/cycling/-84.518641,39.134270;-84.512023,39.102779?geometries=geojson&access_token=${key}`;
+
+    const fetchA = () => {
+        fetch(url).then(
+            response => response.json()
+        ).then(data => {
+            console.log("API : ", data)
+        })
+    }
+
+
     const fetchData = () => {
         API_Garages.getAllgarages().then(res => {
             const garages = res.data;

@@ -3,7 +3,6 @@ import { Modal } from "react-bootstrap";
 import API_Garages from '../data/API_Garages';
 import { useEffect, useState } from "react"
 import "../css/AddSpecialist.css"
-import "../css/DetailGarage.css"
 
 
 function DetailGarage(props) {
@@ -27,7 +26,7 @@ function DetailGarage(props) {
 
     return (
         <div>
-            <Modal show={props.show} className="detailGarage">
+            <Modal show={props.show} className="">
                 <Modal.Header className="headerModal">
                     Détails Garage
                 </Modal.Header>
@@ -42,7 +41,7 @@ function DetailGarage(props) {
                                                <h3> {val.nom} </h3>
                                             </p>
                                             <p>
-                                                <img src={`http://localhost:8000/${val.image}`} style={{ width: "50%", margin:"10px 25%" }} alt={val.image} />
+                                                <img src={`http://localhost:8000/${val.image}`} style={{ width: "50%", margin:"10px auto" }} alt={val.image} />
                                             </p>
                                         </>
                                     )
@@ -56,6 +55,7 @@ function DetailGarage(props) {
                                     <thead>
                                         <tr>
                                             <th>Adresse</th>
+                                            <th>Description</th>
                                             <th>Spécialité véhicule</th>
                                             <th colSpan="2px">Téléphone</th>
                                         </tr>
@@ -67,6 +67,7 @@ function DetailGarage(props) {
                                                     return (
                                                         <tr key={donnee.id}>
                                                             <td>{donnee.adresse}</td>
+                                                            <td>{donnee.description}</td>
                                                             <td>{donnee.marque_vehicule}</td>
                                                             {
                                                                 donnee.specialistes.map((v) => {
@@ -79,16 +80,12 @@ function DetailGarage(props) {
                                             })
                                         }
                                     </tbody>
-                                    
                                 </table>
-
-                                <button type="button" className="btn" style={{border:"1px solid silver", padding:"5px"}}>Voir plus <i className="fa fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
                 </Modal.Body>
                 <Modal.Footer className="headerModal">
-                    <button className="btn btn-success">Ecrire au garagiste</button>
                     <button className="btn btn-dark" onClick={props.close}>Fermer</button>
                 </Modal.Footer>
             </Modal>

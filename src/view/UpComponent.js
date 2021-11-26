@@ -1,5 +1,6 @@
 import cash from "../img/cash.jpg";
 import { useState } from "react";
+import { Link } from "react-router-dom"
 
 function UpComponent(props) {
 
@@ -23,8 +24,9 @@ function UpComponent(props) {
                         <span className="fa fa-comment"></span>
                         <div>
                             <img src={cash} />
-                            <span>Se déconnecter</span>
-                            <span><i className="fa fa-power-off" style={{ color: "#282c34", fontSize: "19px" }}></i></span>
+                            <Link to="">
+                                <span>Se déconnecter</span>
+                                <span><i className="fa fa-power-off" style={{ color: "#282c34", fontSize: "19px" }}></i></span></Link>
                         </div>
                     </div>
                 </header>

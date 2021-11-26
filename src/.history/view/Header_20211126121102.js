@@ -9,7 +9,7 @@ function Header() {
             <div className='sidebar'>
                 <div className="sidebar-header">
                     <h3 className="brand">
-                        <span className="fa fa-car"></span>
+                        <span className="fa fa-bus"></span>
                         <span style={{ fontSize: "20px" }}> Loc_Dép.</span>
                     </h3>
                     <label htmlFor="sidebar-toggle" className="fa fa-list fa-2x"></label>
