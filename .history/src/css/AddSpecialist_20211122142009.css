@@ -1,0 +1,30 @@
+.addSpecial .modal-dialog {
+    height: auto;
+    font-family: Segoe UI;
+    max-width: 50%;
+}
+
+.addSpecial .modal-content {
+    height: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.addSpecial .modal-body {
+    font-size: 16px;
+    padding: 5px 30px;
+}
+
+.addSpecial .headerModal {
+    color: white;
+    background-color: #027581;
+}
+
+.formAddSpecialist label, .formAddSpecialist input[type='text'], .formAddSpecialist input[type="number"] {
+    font-size: 14px;
+}
+
+.formAddSpecialist select, .formAddSpecialist textarea, .formAddSpecialist input[type="file"] {
+    font-size: 14px;
+}
