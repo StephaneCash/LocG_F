@@ -1,7 +1,7 @@
 import React from 'react'
-import '../css/Connexion.css';
 import { useState } from "react";
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom";
+import "../css/Connexion.css"
 
 function Connexion() {
 
@@ -35,35 +35,48 @@ function Connexion() {
     }
 
     return (
-        <div className="connexion">
-            <h4 style={{ textAlign: "center", marginTop: "10px" }}>Loc_Gargage</h4>
-            <hr></hr>
-            <h5 className="blockContenantLiconeUser"><i className="fa fa-user-o"></i></h5>
-            <h4 style={{ textAlign: "center", marginTop: "20px" }}>Connectez-vous</h4>
+        <div className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-md-6">
+                    <div className="card">
+                        <div className="card-header">
+                            <h5 className="blockContenantLiconeUser"><i className="fa fa-car"></i></h5>
+                            <h5 style={{ textAlign: "center", marginTop: "20px" }}>Connectez-vous</h5>
+                        </div>
 
-            <form className="form">
-                <div className="form-group">
-                    <label className="form-label" htmlFor='username'>Username</label>
-                    <input type="text" className="form-control" placeholder="Username" id="username" />
+                        <div className="card-body">
+                            <form className="form">
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor='username'>Username</label>
+                                    <input type="text" className="form-control" placeholder="Username" id="username" />
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label" htmlFor="password">Password</label>
+                                    <input type="password" className="form-control" placeholder="Password" id="password" />
+                                    <i className="fa fa-eye viewPassword" style={{ cursor: "pointer" }} onClick={changer}></i>
+                                </div>
+                                {
+                                    ref === true ? (
+                                        <>
+                                            <button className="btn buttonConnexion" >Connexion...<i className="fa fa-refresh fa-spin"></i></button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <button className="btn buttonConnexion" onClick={seConnecter}>Se connecter</button>
+                                            <Link to="/register" style={{ textAlign: "center", color:"black" }}>
+                                                <i style={{float:"right", marginBottom: "20px" }}>Créer un compte</i>
+                                            </Link>
+                                        </>
+                                    )
+                                }
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div className="form-group">
-                    <label className="form-label" htmlFor="password">Password</label>
-                    <input type="password" className="form-control" placeholder="Password" id="password" />
-                    <i className="fa fa-eye viewPassword" onClick={changer}></i>
-                </div>
-                {
-                    ref === true ? (
-                        <>
-                            <button className="btn buttonConnexion" >Connexion...<i className="fa fa-refresh fa-spin"></i></button>
-                        </>
-                    ) : (
-                        <>
-                            <button className="btn buttonConnexion" onClick={seConnecter}>Se connecter</button>
-                        </>
-                    )
-                }
-            </form>
+            </div>
         </div>
     )
 }

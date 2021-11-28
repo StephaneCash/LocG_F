@@ -5,6 +5,7 @@ import FindGarage from "../view/FindGarage";
 import Garages from "../view/Garages";
 import DetailGaragePlus from '../modal/DetailGaragePlus';
 import Connexion from '../view/Connexion';
+import Register from '../view/Register'
 
 function Routes() {
     return (
@@ -17,6 +18,7 @@ function Routes() {
                     <Route path="/findgarages" exact component={FindGarage} />
                     <Route path="/garages" exact component={Garages} />
                     <Route path="/detailsGarage" exact component={DetailGaragePlus} />
+                    <Route path="/register" exact component={Register} />
                 </Switch>
             </BrowserRouter>
         </>
