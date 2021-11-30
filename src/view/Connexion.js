@@ -1,26 +1,27 @@
 import React from 'react'
 import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import "../css/Connexion.css"
+import "../css/Connexion.css";
+import axios from "axios";
+import swal from "sweetalert";
+
 
 function Connexion() {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
     const [ref, setRef] = useState(false);
+    const [inputLogin, setInputLogin] = useState({
+        username: "",
+        password: "",
+        error_list: [],
+    });
 
     let history = useHistory();
 
-    const seConnecter = (e) => {
-        e.preventDefault();
-        setRef(true)
-        setTime()
-    }
-
-    const setTime = () => {
-        setTimeout(() => {
-            history.push('home')
-        }, 1000)
+    const handleInput = (e) => {
+        e.persist();
+        setInputLogin({
+            ...inputLogin, [e.target.name]: e.target.value
+        });
     }
 
     let view = true;
@@ -34,6 +35,32 @@ function Connexion() {
         }
     }
 
+    const loginSubmit = (e) => {
+        e.preventDefault();
+
+        const data = {
+            username: inputLogin.username,
+            password: inputLogin.password,
+        }
+        axios.get("/sanctum/csrf-cookie").then(response => {
+            axios.post(`api/login`, data).then(res => {
+
+                if (res.data.status === 200) {
+
+                    localStorage.setItem('auth_token', res.data.token);
+                    localStorage.setItem('auth_name', res.data.username);
+                    swal("Success", res.data.message, "success");
+                    history.push('/home');
+
+                } else if (res.data.status === 401) {
+                    swal("Erreur", res.data.message, "warning");
+                } else {
+                    setInputLogin({ ...inputLogin, error_list: res.data.validation_errors })
+                }
+            });
+        });
+    }
+
     return (
         <div className="container py-5">
             <div className="row justify-content-center">
@@ -45,27 +72,32 @@ function Connexion() {
                         </div>
 
                         <div className="card-body">
-                            <form className="form">
+                            <form className="form" onSubmit={loginSubmit}>
                                 <div className="form-group">
                                     <label className="form-label" htmlFor='username'>Username</label>
-                                    <input type="text" className="form-control" placeholder="Username" id="username" />
+                                    <input type="text" className="form-control"
+                                        name='username' onChange={handleInput} value={inputLogin.username}
+                                        placeholder="Username" id="username" />
+                                    <i style={{ color: "red" }}>{inputLogin.error_list.username}</i>
                                 </div>
 
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="password">Password</label>
-                                    <input type="password" className="form-control" placeholder="Password" id="password" />
+                                    <input type="password" onChange={handleInput} value={inputLogin.password}
+                                        className="form-control" placeholder="Password" id="password" name="password" />
+                                    <i style={{ color: "red" }}>{inputLogin.error_list.password}</i>
                                     <i className="fa fa-eye viewPassword" style={{ cursor: "pointer" }} onClick={changer}></i>
                                 </div>
                                 {
                                     ref === true ? (
                                         <>
-                                            <button className="btn buttonConnexion" >Connexion...<i className="fa fa-refresh fa-spin"></i></button>
+                                            <button type='submit' className="btn buttonConnexion" >Connexion...<i className="fa fa-refresh fa-spin"></i></button>
                                         </>
                                     ) : (
                                         <>
-                                            <button className="btn buttonConnexion" onClick={seConnecter}>Se connecter</button>
-                                            <Link to="/register" style={{ textAlign: "center", color:"black" }}>
-                                                <i style={{float:"right", marginBottom: "20px" }}>Créer un compte</i>
+                                            <button className="btn buttonConnexion">Se connecter</button>
+                                            <Link to="/register" style={{ textAlign: "center", color: "black" }}>
+                                                <i style={{ float: "right", marginBottom: "20px" }}>Créer un compte</i>
                                             </Link>
                                         </>
                                     )
