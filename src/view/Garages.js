@@ -140,9 +140,6 @@ function FindGarage() {
                         </div>
 
                     </div>
-                    <LoadWaiting
-                        show={etatLoad}
-                    />
                     <AddGarage
                         show={modal}
                         close={closeModalAdd}

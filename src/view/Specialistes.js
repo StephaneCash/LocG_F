@@ -96,9 +96,6 @@ function Specialistes() {
                         show={etatModalAdd}
                         close={closeModalAdd}
                     />
-                    <LoadWaiting
-                        show={etatLoad}
-                    />
                 </main>
             </div >
         </>

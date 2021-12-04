@@ -12,7 +12,6 @@ class Itineraire extends React.Component {
 
     componentDidMount() {
 
-        // Creates new map instance
         const map = new mapboxgl.Map({
             container: this.mapWrapper,
             style: 'mapbox://styles/mapbox/streets-v10',
@@ -20,7 +19,6 @@ class Itineraire extends React.Component {
             zoom: 10
         });
 
-        // Creates new directions control instance
         const directions = new MapboxDirections({
             accessToken: mapboxgl.accessToken,
             unit: 'metric',
@@ -28,13 +26,11 @@ class Itineraire extends React.Component {
         });
 
 
-        // Integrates directions control with map
         map.addControl(directions, 'top-right');
     }
 
     render() {
         return (
-            // Populates map by referencing map's container property
             <div ref={el => (this.mapWrapper = el)} className="mapWrapper">
 
             </div>

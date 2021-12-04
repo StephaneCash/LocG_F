@@ -174,9 +174,6 @@ function FindGarage() {
                         }
 
                     </div>
-                    <LoadWaiting
-                        show={etatLoad}
-                    />
                     <DetailGarage
                         show={etatDetail}
                         close={closeModal}

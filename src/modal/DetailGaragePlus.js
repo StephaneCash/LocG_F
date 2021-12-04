@@ -90,9 +90,6 @@ function DetailGaragePlus() {
                     </div>
                 </main>
             </div>
-            <LoadWaiting
-                show={etatLoad}
-            />
         </div>
     )
 }
