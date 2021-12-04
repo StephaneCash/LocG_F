@@ -269,9 +269,6 @@ function DashBoard() {
 
                         </div>
                     </section>
-                    <LoadWaiting
-                        show={etatLoad}
-                    />
                 </main>
             </div>
         </>
