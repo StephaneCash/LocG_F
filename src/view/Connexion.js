@@ -88,26 +88,16 @@ function Connexion() {
                                     <i style={{ color: "red" }}>{inputLogin.error_list.password}</i>
                                     <i className="fa fa-eye viewPassword" style={{ cursor: "pointer" }} onClick={changer}></i>
                                 </div>
-                                {
-                                    ref === true ? (
-                                        <>
-                                            <button type='submit' className="btn buttonConnexion" >Connexion...<i className="fa fa-refresh fa-spin"></i></button>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <button className="btn buttonConnexion">Se connecter</button>
-                                            <Link to="/register" style={{ textAlign: "center", color: "black" }}>
-                                                <i style={{ float: "right", marginBottom: "20px" }}>Créer un compte</i>
-                                            </Link>
-                                        </>
-                                    )
-                                }
-                            </form>
-                        </div>
 
+                                <button className="btn buttonConnexion">Se connecter</button>
+                                <Link to="/register" style={{ textAlign: "center", color: "black" }}>
+                                    <i style={{ float: "right", marginBottom: "20px" }}>Créer un compte</i>
+                                </Link>
+                            </form>
+                            
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

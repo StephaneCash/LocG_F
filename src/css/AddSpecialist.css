@@ -28,3 +28,26 @@
 .formAddSpecialist select, .formAddSpecialist textarea, .formAddSpecialist input[type="file"] {
     font-size: 14px;
 }
+svg {
+    width: 3.70em;
+    margin-top: 5px;
+
+    animation: 1.5s spin ease infinite;
+  }
+  
+  .ring {
+    fill: none;
+    stroke: #bac3c4;
+    stroke-width: 2;
+  }
+  
+  .ball {
+    fill: #027581;
+    stroke: none;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }

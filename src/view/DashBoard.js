@@ -155,9 +155,8 @@ function DashBoard() {
 
                                         : <>
                                             <tr>
-                                                <div className="dd">
-                                                    <i className="fa fa-warning"></i><br />
-                                                    Aucune donnée disponible
+                                                <div id="loadDash">
+                                                    <LoadWaiting />
                                                 </div>
                                             </tr>
                                         </>}

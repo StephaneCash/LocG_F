@@ -1,16 +1,16 @@
-import { Modal } from "react-bootstrap";
-import "../css/LoadWaiting.css";
+import Loader from 'react-js-loader'
+import "../css/AddSpecialist.css"
 
 function LoadWaiting(props) {
     return (
         <>
-            <Modal show={props.show} className="waitingModal">
-                <Modal.Body>
-                    <div>
-                        <i className="fa fa-spinner fa-spin"></i> Chargement...
-                    </div>
-                </Modal.Body>
-            </Modal>
+            <svg viewBox="0 0 50 50">
+                <circle class="ring" cx="25" cy="25" r="20"></circle>
+                <circle class="ball" cx="25" cy="5" r="3.5"></circle>
+            </svg><br />
+            <p style={{marginLeft:"-20px"}}>
+                Chargement...
+            </p>
         </>
     )
 }

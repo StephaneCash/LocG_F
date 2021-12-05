@@ -387,3 +387,9 @@ tbody tr:nth-child(even) {
     display: block;
     text-align: center;
 }
+
+#loadDash{
+    position:absolute;
+    left: 40%;
+    transform: translateX(-50%, -50%)
+}
