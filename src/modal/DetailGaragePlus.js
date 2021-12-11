@@ -14,16 +14,10 @@ function DetailGaragePlus() {
     let id = location.state.id;
     const data = location.state.data;
 
-    const [etatLoad, setEtatLoad] = useState(true);
-
-    setTimeout((e) => {
-        setEtatLoad(false)
-    }, 1000);
-
     let history = useHistory()
 
     const RedirectionAccueil = () => {
-        history.push('/garages')
+        history.push('/findgarages')
     }
 
     return (
@@ -86,7 +80,7 @@ function DetailGaragePlus() {
                                 }
                             </tbody>
                         </table>
-                        <button className="btn btn-dark" onClick={RedirectionAccueil}>Garages</button>
+                        <button className="btn btn-dark" onClick={RedirectionAccueil}>Voir d'autres garages à proximité</button>
                     </div>
                 </main>
             </div>

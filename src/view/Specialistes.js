@@ -72,22 +72,33 @@ function Specialistes() {
                             </thead>
                             <tbody>
                                 {
-                                    data.map((val) => {
-                                        return (
-                                            <tr>
-                                                <td style={{ border: "1px solid #f0f0f0" }}>{val.id}</td>
-                                                <td style={{ border: "1px solid #f0f0f0" }}>{val.nom}</td>
-                                                <td style={{ border: "1px solid #f0f0f0" }}>{val.postnom}</td>
-                                                <td style={{ border: "1px solid #f0f0f0" }}>{val.prenom}</td>
-                                                <td style={{ border: "1px solid #f0f0f0" }}>
-                                                    <button className="btn btn-info" style={{ marginRight: "5px" }}>Editer</button>
-                                                    <button className="btn btn-danger" style={{ marginRight: "5px" }} >Supprimer</button>
-                                                    <button className="btn btn-primary">Détail</button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
+                                    data.length > 0 ? (<>
+                                        {
+                                            data.map((val) => {
+                                                return (
+                                                    <tr>
+                                                        <td style={{ border: "1px solid #f0f0f0" }}>{val.id}</td>
+                                                        <td style={{ border: "1px solid #f0f0f0" }}>{val.nom}</td>
+                                                        <td style={{ border: "1px solid #f0f0f0" }}>{val.postnom}</td>
+                                                        <td style={{ border: "1px solid #f0f0f0" }}>{val.prenom}</td>
+                                                        <td style={{ border: "1px solid #f0f0f0" }}>
+                                                            <button className="btn btn-default" style={{ marginRight: "5px", border: "1px solid silver" }}>Editer</button>
+                                                            <button className="btn btn-default" style={{ marginRight: "5px", border: "1px solid silver" }} >Supprimer</button>
+                                                            <button className="btn btn-default" style={{ border: "1px solid silver" }}>Détail</button>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </>) : (<>
+                                        <td colSpan="5px" style={{ textAlign: "center", height: "10vh" }}>
+                                            <div id="loadDash">
+                                                <LoadWaiting />
+                                            </div>
+                                        </td>
+                                    </>)
                                 }
+
                             </tbody>
                         </table>
                     </div>

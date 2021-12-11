@@ -5,7 +5,7 @@ import "../css/Garages.css";
 import React, { useState, useEffect } from "react";
 import API_Garages from "../data/API_Garages";
 import LoadWaiting from "../modal/LoadWaiting";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import AddGarage from "../modal/AddGarage";
 
 
@@ -109,9 +109,9 @@ function FindGarage() {
                                                                 </td>
                                                                 <td style={{ border: "1px solid #f0f0f0" }}>{val.adresse}</td>
                                                                 <td>
-                                                                    <button className="btn btn-info" style={{ marginRight: "5px" }}>Editer</button>
-                                                                    <button className="btn btn-danger" style={{ marginRight: "5px" }} >Supprimer</button>
-                                                                    <button className="btn btn-primary">Détail</button>
+                                                                    <button className="btn btn-default" style={{ marginRight: "5px", border: "1px solid silver" }}>Editer</button>
+                                                                    <button className="btn btn-default" style={{ marginRight: "5px", border: "1px solid silver" }} >Supprimer</button>
+                                                                    <button className="btn btn-default" style={{ marginRight: "5px", border: "1px solid silver" }} >Détail</button>
                                                                 </td>
                                                             </tr>
                                                         )
@@ -120,15 +120,11 @@ function FindGarage() {
                                             </>
                                         ) : (
                                             <>
-                                                <tr >
-                                                    <td colSpan="5px" style={{ textAlign: "center" }}>Aucune donnée disponible
-                                                        <p>
-                                                            <i
-                                                                className="fa fa-warning fa-2x"
-                                                                style={{ color: "red" }}
-                                                            >
-                                                            </i>
-                                                        </p>
+                                                <tr>
+                                                    <td colSpan="5px" style={{ textAlign: "center", height:"10vh" }}>
+                                                        <div id="loadDash">
+                                                            <LoadWaiting />
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </>

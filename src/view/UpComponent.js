@@ -24,14 +24,14 @@ function UpComponent(props) {
                         <span className="fa fa-comment"></span>
                         <div>
                             <img src={cash} />
-                            <Link to="/">
-                                <span>Se déconnecter</span>
-                                <span><i className="fa fa-power-off" style={{ color: "#282c34", fontSize: "19px" }}></i></span></Link>
+                            <button type="button" className="btn btn-default ml-2" style={{border: "1px solid silver"}}>
+                                Déconnexion <i className="fa fa-power-off" style={{ color: "#282c34", fontSize: "19px" }}></i>
+                            </button>
                         </div>
                     </div>
                 </header>
 
-            </div>
+            </div >
         </>
     )
 }

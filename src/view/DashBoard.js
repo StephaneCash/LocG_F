@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import LoadWaiting from "../modal/LoadWaiting";
 import API_Specialistes from "../data/API_Specialistes";
 
-function DashBoard() {
+function DashBoard(props) {
 
     const [data, setData] = useState([]);
     const [etat, setEtat] = useState(false);
@@ -139,7 +139,7 @@ function DashBoard() {
                                                                         <button
                                                                             className="btn btn-info"
                                                                             onClick={function () {
-                                                                                alert(val.id)
+                                                                                setId(val.id)
                                                                             }}
                                                                         >
                                                                             Détail
@@ -155,9 +155,11 @@ function DashBoard() {
 
                                         : <>
                                             <tr>
-                                                <div id="loadDash">
-                                                    <LoadWaiting />
-                                                </div>
+                                                <td colSpan="5px" style={{ textAlign: "center", height: "10vh" }}>
+                                                    <div id="loadDash">
+                                                        <LoadWaiting />
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </>}
                                 </table>
@@ -181,6 +183,14 @@ function DashBoard() {
                                                                                 <p key={val.id}>
                                                                                     <span style={{ fontSize: "14px" }}>
                                                                                         Description garage
+                                                                                        <h6 className="mt-3">{val.nom} <p>{val.adresse}</p></h6>
+                                                                                        {
+                                                                                            val.specialistes.map((val)=>{
+                                                                                                return (
+                                                                                                    <p>{val.telephone}</p>
+                                                                                                )
+                                                                                            })
+                                                                                        }
                                                                                     </span>
                                                                                     <div style={{ fontSize: "13px", marginTop: "10px" }}>
 
@@ -203,7 +213,7 @@ function DashBoard() {
                                                                 data.map((val) => {
                                                                     if (val.id === id) {
                                                                         return (
-                                                                            <>
+                                                                            <tr key={val.id}>
                                                                                 <span style={{ fontSize: "14px" }}>
                                                                                     Description spécialité
                                                                                 </span>
@@ -211,7 +221,7 @@ function DashBoard() {
 
                                                                                 </div>
 
-                                                                            </>
+                                                                            </tr>
                                                                         )
                                                                     }
                                                                 })
@@ -229,12 +239,12 @@ function DashBoard() {
                                                                 }).map((val) => {
                                                                     if (val.id === id) {
                                                                         return (
-                                                                            <>
+                                                                            <tr key={val.id}>
                                                                                 <span className="fa fa-spinner" style={{ marginTop: "-15px" }}></span>
                                                                                 <small style={{ fontSize: '14px', marginTop: "-20px" }}>Adresse</small>
                                                                                 <h5 style={{ fontSize: "13px", marginTop: "40px", marginLeft: "-70px" }}></h5>
 
-                                                                            </>
+                                                                            </tr>
                                                                         )
                                                                     }
                                                                 })
@@ -253,14 +263,14 @@ function DashBoard() {
                                         <div className="bday-img"> </div>
                                         <div className="bday-info">
                                             <h5>Stéphane Kikoni </h5>
-                                            <small>Bday Today</small>
+                                            <small>Admin</small>
                                         </div>
                                     </div>
 
                                     <div className="text-center">
                                         <button>
-                                            <span className="fa fa-check"></span>
-                                            Obtenir
+                                            <span className="fa fa-edit"></span>
+                                            Editer
                                         </button>
                                     </div>
                                 </div>

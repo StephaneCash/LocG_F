@@ -8,7 +8,6 @@ import swal from "sweetalert";
 
 function Connexion() {
 
-    const [ref, setRef] = useState(false);
     const [inputLogin, setInputLogin] = useState({
         username: "",
         password: "",
@@ -90,11 +89,12 @@ function Connexion() {
                                 </div>
 
                                 <button className="btn buttonConnexion">Se connecter</button>
+
                                 <Link to="/register" style={{ textAlign: "center", color: "black" }}>
                                     <i style={{ float: "right", marginBottom: "20px" }}>Créer un compte</i>
                                 </Link>
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>

@@ -106,7 +106,7 @@ function FindGarage() {
                                 onChange={handleInput}
                             />
 
-                            <button type="button" className="btn btn-primary ml-3" onClick={TrouverItineraire}>Trouver l'itinéraire</button>
+                            <button type="button" className="btn btn-info ml-3" onClick={TrouverItineraire}>Trouver l'itinéraire</button>
                         </p>
 
 
