@@ -9,6 +9,7 @@ import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 mapboxgl.accessToken = "pk.eyJ1Ijoic3RlcGhhbmVjYXNoIiwiYSI6ImNrdjhuN291MjRrYjQyd3A2YjlzcXp3eGUifQ.TD4eitBbhALsXRy9pWwNug";
 
 class Itineraire extends React.Component {
+    
 
     componentDidMount() {
 
