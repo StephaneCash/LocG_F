@@ -16,8 +16,8 @@ class Itineraire extends React.Component {
         const map = new mapboxgl.Map({
             container: this.mapWrapper,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: [15.266293, -4.441931],
-            zoom: 10
+            center: [15.296293, -4.3254],
+            zoom: 12.7,
         });
 
         const directions = new MapboxDirections({
