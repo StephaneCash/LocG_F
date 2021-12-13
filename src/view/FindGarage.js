@@ -7,7 +7,6 @@ import React, { useState, useEffect } from "react";
 import markerImg from "../img/marker.png";
 import API_Garages from "../data/API_Garages";
 import DetailGarage from "../modal/DetailGarage";
-import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Itineraire from "./Itineraire";
@@ -46,16 +45,41 @@ function FindGarage() {
         setLng(lng)
     }
 
-    console.log("Data objet ", tab)
+    function GeoErreur(err) {
+        let msg;
+        switch (err.code) {
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(Geo)
-    } else {
-        console.log("Rien");
+            case err.TIMEOUT:
+                msg = "Le temps de la requête a expiré";
+                break;
+            case err.UNKNOWN_ERROR:
+                msg = "Une erreur inconnue s'est produite";
+                break;
+            case err.POSITION_UNVAILABLE:
+                msg = "Une erreur technique s'est produite";
+                break;
+            case err.PERMISSION_DENIED:
+                msg = "Vous avez refusé la géolocalisation";
+                break;
+
+        }
+        console.log("Message : ", msg)
+    }
+
+    console.log("Data objet ", lng, lat)
+
+    const geoL = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(Geo, GeoErreur, {maximumAge : 120000})
+        } else {
+            console.log("Rien");
+        }
+
     }
 
     useEffect(() => {
         fetchData();
+        geoL()
     }, []);
 
     const [viewport, setViewport] = useState({
@@ -106,7 +130,7 @@ function FindGarage() {
                 <main>
                     <div className="mainDiv">
                         <p>
-                            Find des garages à proximité <i className="fa fa-compass compass"></i>
+                            Find des garages à proximité
                         </p>
 
                         <p className="d-flex">
@@ -179,14 +203,18 @@ function FindGarage() {
                                                                         : ""
                                                                 }
 
-                                                             {/* <Marker
-                                                                latitude={lat}
-                                                                longitude={lng}
-                                                              >
+                                                                {
+                                                                    lat !== "" ? (<>
+                                                                        <Marker
+                                                                            latitude={lat}
+                                                                            longitude={lng}
+                                                                        >
+                                                                            <i className="fa fa-compass compass"></i>
 
-                                                                  Ma position
 
-                                                             </Marker> */}
+                                                                        </Marker>
+                                                                    </>) : "Pas de connexion"
+                                                                }
 
                                                             </>
                                                         ) : ""

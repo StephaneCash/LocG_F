@@ -418,7 +418,8 @@ tbody tr:nth-child(even) {
 }
 
 .compass {
-    font-size: 30px;
+    font-size: 3
+    20px;
     animation: flash 1.4s linear infinite;
 }
 
