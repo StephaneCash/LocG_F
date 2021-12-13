@@ -225,7 +225,7 @@ function FindGarage() {
                                         ) : <h4>Entrer la marque ou une panne de votre véhicule, par exemple : " Mercedes ou pneus " </h4>
                                     }
                                 </>)
-                        }
+                        } 
 
                     </div>
                     <DetailGarage
