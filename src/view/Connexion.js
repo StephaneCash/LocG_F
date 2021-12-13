@@ -49,7 +49,10 @@ function Connexion() {
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.username);
                     swal("Success", res.data.message, "success");
-                    history.push('/home');
+                    history.push({
+                        pathname: '/home',
+                        state: { datas: res.data }
+                    });
 
                 } else if (res.data.status === 401) {
                     swal("Erreur", res.data.message, "warning");

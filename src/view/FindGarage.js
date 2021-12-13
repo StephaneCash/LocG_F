@@ -5,12 +5,10 @@ import ReactMapGL, { Marker, Popup, FullscreenControl, NavigationControl } from 
 import "../css/FindGarage.css";
 import React, { useState, useEffect } from "react";
 import markerImg from "../img/marker.png";
-import LoadWaiting from "../modal/LoadWaiting";
 import API_Garages from "../data/API_Garages";
 import DetailGarage from "../modal/DetailGarage";
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
-import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Itineraire from "./Itineraire";
 
@@ -24,6 +22,8 @@ function FindGarage() {
     const [etatDetail, setEtatDetail] = useState(false)
     const [id, setId] = useState("");
     const [affIt, setAffIt] = useState(false);
+    const [lat, setLat] = useState('');
+    const [lng, setLng] = useState('');
 
     const key = "pk.eyJ1Ijoic3RlcGhhbmVjYXNoIiwiYSI6ImNrdjhuN291MjRrYjQyd3A2YjlzcXp3eGUifQ.TD4eitBbhALsXRy9pWwNug"
 
@@ -35,23 +35,35 @@ function FindGarage() {
         })
     }
 
-    const directions = new MapboxDirections({
-        accessToken: "pk.eyJ1Ijoic3RlcGhhbmVjYXNoIiwiYSI6ImNrdjhuN291MjRrYjQyd3A2YjlzcXp3eGUifQ.TD4eitBbhALsXRy9pWwNug",
-        unit: 'metric',
-        profile: 'mapbox/driving',
-    });
+    var tab = {};
 
+    function Geo(position) {
+        let lat = position.coords.latitude;
+        tab.lat = lat;
+        setLat(lat)
+        let lng = position.coords.longitude;
+        tab.lng = lng;
+        setLng(lng)
+    }
+
+    console.log("Data objet ", tab)
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(Geo)
+    } else {
+        console.log("Rien");
+    }
 
     useEffect(() => {
         fetchData();
     }, []);
 
     const [viewport, setViewport] = useState({
-        latitude: -4.441931,
-        longitude: 15.266293,
+        latitude: -4.3254,
+        longitude: 15.3032,
         width: "auto",
         height: "75vh",
-        zoom: 10,
+        zoom: 12.7,
         pitch: 0
     });
 
@@ -94,7 +106,7 @@ function FindGarage() {
                 <main>
                     <div className="mainDiv">
                         <p>
-                            Find des garages à proximité
+                            Find des garages à proximité <i className="fa fa-compass compass"></i>
                         </p>
 
                         <p className="d-flex">
@@ -153,14 +165,28 @@ function FindGarage() {
                                                                                             setId(val.id)
                                                                                         }} >
                                                                                             <img style={{ width: "13px" }} src={markerImg} />
+                                                                                            <p>
+                                                                                                {val.nom}
+                                                                                            </p>
                                                                                         </button>
                                                                                     </Marker>
+
+
                                                                                 </>
                                                                             )
                                                                         })
 
                                                                         : ""
                                                                 }
+
+                                                             {/* <Marker
+                                                                latitude={lat}
+                                                                longitude={lng}
+                                                              >
+
+                                                                  Ma position
+
+                                                             </Marker> */}
 
                                                             </>
                                                         ) : ""

@@ -98,7 +98,8 @@ function DetailGarage(props) {
                     </div>
                 </Modal.Body>
                 <Modal.Footer className="headerModal">
-                    <button className="btn btn-success">Ecrire au garagiste</button>
+                    <button className="btn btn" 
+                        style={{ border: "1px solid silver", backgroundColor:"#027581", color:"white"}}>Ecrire au garagiste</button>
                     <button className="btn btn-dark" onClick={props.close}>Fermer</button>
                 </Modal.Footer>
             </Modal>

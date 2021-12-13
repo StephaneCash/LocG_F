@@ -12,14 +12,14 @@
     box-sizing: border-box;
 }
 
-input:focus{
+input:focus {
     border: 1px solid silver !important;
     box-shadow: none !important;
 }
 
-button:focus{
+button:focus {
     border: 1px solid silver !important;
-    box-shadow: none !important; 
+    box-shadow: none !important;
 }
 
 #sidebar-toggle {
@@ -333,36 +333,46 @@ tbody tr:nth-child(even) {
         width: 60px;
         z-index: 150;
     }
+
     .sidebar .sidebar-header h3 span, .sidebar ul li a span:last-child {
         display: none;
     }
+
     .sidebar .sidebar-header, .sidebar ul li {
         display: flex;
         justify-content: center;
     }
+
     .main-content {
         margin-left: 60px;
     }
+
     .main-content header {
         left: 60px;
         width: cal(100% - 60px);
     }
+
     #sidebar-toggle:checked~.sidebar {
         width: 240px;
     }
+
     #sidebar-toggle:checked~.sidebar .sidebar-header h3 span, #sidebar-toggle:checked~.sidebar ul li a span:last-child {
         display: inline;
     }
+
     #sidebar-toggle:checked~.sidebar .sidebar-header {
         display: flex;
         justify-content: space-between;
     }
+
     #sidebar-toggle:checked~.sidebar ul li {
         display: block;
     }
+
     #sidebar-toggle:checked~.main-content {
         margin-left: 60px;
     }
+
     #sidebar-toggle:checked~.main-content header {
         left: 60px;
     }
@@ -372,12 +382,15 @@ tbody tr:nth-child(even) {
     .dash-cards {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .card-single {
         margin-bottom: 1rem;
     }
+
     .activity-grid {
         display: block;
     }
+
     .summary {
         margin-top: 1.5rem;
     }
@@ -398,8 +411,30 @@ tbody tr:nth-child(even) {
     text-align: center;
 }
 
-#loadDash{
-    position:absolute;
+#loadDash {
+    position: absolute;
     left: 40%;
     transform: translateX(-50%, -50%)
+}
+
+.compass {
+    font-size: 30px;
+    animation: flash 1.4s linear infinite;
+}
+
+@keyframes flash {
+    0% {
+        color: #027581;
+        text-shadow: none;
+    }
+
+    80% {
+        color: #027581;
+        text-shadow: none;
+    }
+
+    100% {
+        color : red;
+        text-shadow: 0 0 7px #fff900, 0 0 50px #ff6c00;
+    }
 }
