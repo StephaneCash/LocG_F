@@ -84,7 +84,7 @@ function FindGarage() {
 
     const [viewport, setViewport] = useState({
         latitude: -4.3254,
-        longitude: 15.3032,
+        longitude: 15.296293,
         width: "auto",
         height: "75vh",
         zoom: 12.7,
