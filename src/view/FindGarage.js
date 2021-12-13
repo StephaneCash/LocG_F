@@ -226,7 +226,6 @@ function FindGarage() {
                                     }
                                 </>)
                         }
-                sss        
 
                     </div>
                     <DetailGarage
