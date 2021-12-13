@@ -215,7 +215,7 @@ function FindGarage() {
                                                                         </Marker>
                                                                     </>) : "Pas de connexion"
                                                                 }
-h
+
                                                             </>
                                                         ) : ""
                                                     }
