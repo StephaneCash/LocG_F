@@ -70,7 +70,7 @@ function FindGarage() {
 
     const geoL = () => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(Geo, GeoErreur, {maximumAge : 120000})
+            navigator.geolocation.getCurrentPosition(Geo, GeoErreur, { maximumAge: 120000 })
         } else {
             console.log("Rien");
         }
@@ -210,7 +210,7 @@ function FindGarage() {
                                                                             longitude={lng}
                                                                         >
                                                                             <i className="fa fa-compass compass"></i>
-
+                                                                            <p style={{ marginLeft: '-40px' }}>Votre position</p>
 
                                                                         </Marker>
                                                                     </>) : "Pas de connexion"
