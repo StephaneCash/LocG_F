@@ -218,7 +218,7 @@ function FindGarage() {
 
                                                             </>
                                                         ) : ""
-       ssss                                             }
+                                                    }
 
                                                 </ReactMapGL>
                                             </>
