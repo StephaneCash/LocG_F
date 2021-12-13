@@ -19,7 +19,7 @@ function Header() {
                     <ul>
                         <li>
                             <NavLink className="" to="/home">
-                                <span className="fa fa-home"></span>
+                                <span className="fa fa-table"></span>
                                 <span>Dashboard</span>
                             </NavLink>
                         </li>
@@ -31,7 +31,7 @@ function Header() {
                         </li>
                         <li>
                             <NavLink className="" to="/garages">
-                                <span className="fa fa-book"></span>
+                                <span className="fa fa-bus"></span>
                                 <span>Garages</span>
                             </NavLink>
                         </li>

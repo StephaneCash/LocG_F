@@ -63,7 +63,7 @@ function FindGarage() {
                 break;
 
         }
-        console.log("Message : ", msg)
+        alert(msg)
     }
 
     console.log("Data objet ", lng, lat)
