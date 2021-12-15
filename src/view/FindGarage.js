@@ -42,7 +42,7 @@ function FindGarage() {
         setLat(lat)
         let lng = position.coords.longitude;
         tab.lng = lng;
-        setLng(lng)
+        setLng(lng);
     }
 
     function GeoErreur(err) {
@@ -63,7 +63,7 @@ function FindGarage() {
                 break;
 
         }
-        alert(msg)
+        alert(msg);
     }
 
     console.log("Data objet ", lng, lat)
@@ -74,12 +74,11 @@ function FindGarage() {
         } else {
             console.log("Rien");
         }
-
     }
 
     useEffect(() => {
         fetchData();
-        geoL()
+        geoL();
     }, []);
 
     const [viewport, setViewport] = useState({
@@ -225,7 +224,7 @@ function FindGarage() {
                                         ) : <h4>Entrer la marque ou une panne de votre véhicule, par exemple : " Mercedes ou pneus " </h4>
                                     }
                                 </>)
-                        } 
+                        }
 
                     </div>
                     <DetailGarage
