@@ -5,8 +5,7 @@ import FindGarage from "../view/FindGarage";
 import Garages from "../view/Garages";
 import DetailGaragePlus from '../modal/DetailGaragePlus';
 import Connexion from '../view/Connexion';
-import Register from '../view/Register';
-//import RoutesProtected from './RoutesProtected';
+import Register from '../view/Register'
 
 function Routes() {
     return (

@@ -6,6 +6,7 @@ import API_Garages from "../data/API_Garages";
 import { useState, useEffect } from "react";
 import LoadWaiting from "../modal/LoadWaiting";
 import API_Specialistes from "../data/API_Specialistes";
+import { withRouter } from "react-router-dom";
 
 function DashBoard(props) {
 
@@ -13,7 +14,6 @@ function DashBoard(props) {
     const [etat, setEtat] = useState(false);
     const [valueSearch, setValueSearch] = useState("");
     const [id, setId] = useState(0);
-    const [elId, setElId] = useState("");
     const [etatLoad, setEtatLoad] = useState(true);
     const [specialistes, setSpecialiste] = useState([]);
 
@@ -115,45 +115,46 @@ function DashBoard(props) {
 
                                     {etat && data.length > 0 ?
                                         <>
-                                            <tbody>
-                                                {
-                                                    data.map((val) => {
-                                                        return (
-                                                            <>
-                                                                <tr key={val.id}>
-                                                                    <td>{val.id}</td>
-                                                                    <td>{val.nom}</td>
-                                                                    <td style={{ width: "auto" }}>
-                                                                        {
-                                                                            val.specialites.map((donnee) => {
-                                                                                return (
-                                                                                    <>
-                                                                                        <span style={{ border: "1px solid silver", padding: "4px" }}> {donnee.nom} </span> &nbsp; &nbsp;
-                                                                                    </>
-                                                                                )
-                                                                            })
-                                                                        }
-                                                                    </td>
-                                                                    <td>{val.adresse}</td>
-                                                                    <td>
-                                                                        <button
-                                                                            className="btn btn-info"
-                                                                            onClick={function () {
-                                                                                setId(val.id)
-                                                                            }}
-                                                                        >
-                                                                            Détail
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </tbody>
+
+                                            {
+                                                data.map((val, index) => {
+                                                    return (
+                                                        <tbody>
+                                                            <tr key={index}>
+                                                                <td>{val.id}</td>
+                                                                <td>{val.nom}</td>
+                                                                <td style={{ width: "auto" }}>
+                                                                    {
+                                                                        val.specialites.map((donnee) => {
+                                                                            return (
+                                                                                <>
+                                                                                    <span style={{ border: "1px solid silver", padding: "4px" }}> {donnee.nom} </span> &nbsp; &nbsp;
+                                                                                </>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </td>
+                                                                <td>{val.adresse}</td>
+                                                                <td>
+                                                                    <button
+                                                                        className="btn btn-info"
+                                                                        onClick={function () {
+                                                                            setId(val.id)
+                                                                        }}
+                                                                    >
+                                                                        Détail
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    )
+                                                })
+                                            }
+
                                         </>
 
-                                        : <>
+                                        :
+                                        <tbody>
                                             <tr>
                                                 <td colSpan="5px" style={{ textAlign: "center", height: "10vh" }}>
                                                     <div id="loadDash">
@@ -161,7 +162,7 @@ function DashBoard(props) {
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </>}
+                                        </tbody>}
                                 </table>
 
 
@@ -177,15 +178,15 @@ function DashBoard(props) {
                                                         {id ?
                                                             <>
                                                                 {
-                                                                    data.map((val) => {
+                                                                    data.map((val, index) => {
                                                                         if (val.id === id) {
                                                                             return (
-                                                                                <p key={val.id}>
+                                                                                <p key={index}>
                                                                                     <span style={{ fontSize: "14px" }}>
                                                                                         Description garage
                                                                                         <h6 className="mt-3">{val.nom} <p>{val.adresse}</p></h6>
                                                                                         {
-                                                                                            val.specialistes.map((val)=>{
+                                                                                            val.specialistes.map((val) => {
                                                                                                 return (
                                                                                                     <p>{val.telephone}</p>
                                                                                                 )
@@ -210,10 +211,10 @@ function DashBoard(props) {
                                                     {id ?
                                                         <>
                                                             {
-                                                                data.map((val) => {
+                                                                data.map((val, index) => {
                                                                     if (val.id === id) {
                                                                         return (
-                                                                            <tr key={val.id}>
+                                                                            <tr key={index}>
                                                                                 <span style={{ fontSize: "14px" }}>
                                                                                     Description spécialité
                                                                                 </span>
@@ -235,11 +236,10 @@ function DashBoard(props) {
                                                     {id ?
                                                         <>
                                                             {
-                                                                data.filter((val) => {
-                                                                }).map((val) => {
+                                                                data.filter().map((val, index) => {
                                                                     if (val.id === id) {
                                                                         return (
-                                                                            <tr key={val.id}>
+                                                                            <tr key={index}>
                                                                                 <span className="fa fa-spinner" style={{ marginTop: "-15px" }}></span>
                                                                                 <small style={{ fontSize: '14px', marginTop: "-20px" }}>Adresse</small>
                                                                                 <h5 style={{ fontSize: "13px", marginTop: "40px", marginLeft: "-70px" }}></h5>
@@ -283,4 +283,4 @@ function DashBoard(props) {
         </>
     )
 }
-export default DashBoard;
+export default withRouter(DashBoard);
