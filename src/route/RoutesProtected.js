@@ -6,7 +6,7 @@ function RoutesProtected({ isAuth: isAuth, component: component, ...rest }) {
             return <Component />;
         } else {
             return <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-        }
+        };
     }} />
 }
 
