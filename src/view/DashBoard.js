@@ -211,10 +211,10 @@ function DashBoard(props) {
                                                     {id ?
                                                         <>
                                                             {
-                                                                data.map((val, index) => {
+                                                                data.map((val) => {
                                                                     if (val.id === id) {
                                                                         return (
-                                                                            <tr key={index}>
+                                                                            <tr key={val}>
                                                                                 <span style={{ fontSize: "14px" }}>
                                                                                     Description spécialité
                                                                                 </span>
@@ -236,12 +236,11 @@ function DashBoard(props) {
                                                     {id ?
                                                         <>
                                                             {
-                                                                data.filter().map((val, index) => {
+                                                                data.map((val) => {
                                                                     if (val.id === id) {
                                                                         return (
-                                                                            <tr key={index}>
-                                                                                <span className="fa fa-spinner" style={{ marginTop: "-15px" }}></span>
-                                                                                <small style={{ fontSize: '14px', marginTop: "-20px" }}>Adresse</small>
+                                                                            <tr key={val.id}>
+                                                                                <small style={{ fontSize: '14px', marginTop: "-20px" }}></small>
                                                                                 <h5 style={{ fontSize: "13px", marginTop: "40px", marginLeft: "-70px" }}></h5>
 
                                                                             </tr>

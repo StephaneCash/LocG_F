@@ -18,7 +18,7 @@ function Header() {
                 <div className="sidebar-menu">
                     <ul>
                         <li>
-                            <NavLink className="" to="/home">
+                            <NavLink to="/home">
                                 <span className="fa fa-table"></span>
                                 <span>Dashboard</span>
                             </NavLink>

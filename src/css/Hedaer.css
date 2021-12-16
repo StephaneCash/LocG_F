@@ -2,3 +2,9 @@ a:hover {
     text-decoration: none;
     outline-style: none;
 }
+
+a.active {
+    border-bottom: 3px solid silver;
+    padding-bottom: 5px;
+    color: white;
+}
