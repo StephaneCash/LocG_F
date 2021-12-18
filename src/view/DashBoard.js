@@ -8,7 +8,7 @@ import API_Specialistes from "../data/API_Specialistes";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 
-import { Line } from "react-chartjs-2";
+import { Line, a } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
