@@ -4,18 +4,22 @@ import UpComponent from "./UpComponent";
 import { Link } from "react-router-dom";
 import API_Garages from "../data/API_Garages";
 import { useState, useEffect } from "react";
-import LoadWaiting from "../modal/LoadWaiting";
 import API_Specialistes from "../data/API_Specialistes";
 import { withRouter } from "react-router-dom";
+import axios from "axios";
+
+import { Line, Bar } from "react-chartjs-2";
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 function DashBoard(props) {
 
     const [data, setData] = useState([]);
     const [etat, setEtat] = useState(false);
     const [valueSearch, setValueSearch] = useState("");
-    const [id, setId] = useState(0);
     const [etatLoad, setEtatLoad] = useState(true);
     const [specialistes, setSpecialiste] = useState([]);
+    const [com, setCom] = useState([]);
 
     const fetchData = () => {
         API_Garages.getAllgarages().then(res => {
@@ -23,6 +27,15 @@ function DashBoard(props) {
             setEtat(true);
             setEtatLoad(false);
             setData(garages);
+        })
+    }
+
+    const commune = () => {
+        axios.get(`http://localhost:8000/api/communes`).then(res => {
+            const communes = res.data;
+            setCom(communes);
+        }).catch(error => {
+            console.log(error);
         })
     }
 
@@ -35,15 +48,55 @@ function DashBoard(props) {
         })
     }
 
+    let comLabels = [];
+
+    let dataCom = [];
+
+    if (com.length > 0) {
+        for (const dataObj of com) {
+
+            comLabels.push(dataObj.nom);
+
+            for (const dataOb of dataObj.garages) {
+                dataCom.push(parseInt(dataOb.id));
+            }
+        }
+    }
+
     useEffect(() => {
         fetchData();
+        commune();
     }, []);
 
     useEffect(() => {
         fetchDataSpec();
     }, [])
 
-    console.log("DATA", data);
+    const dataCommunes = {
+
+        labels: comLabels,
+
+        datasets: [
+            {
+
+                label: 'Garages',
+                data: dataCom,
+                fill: false,
+                backgroundColor: 'black',
+                borderColor: '#027581',
+                width: "23px"
+            },
+        ],
+    };
+
+    const options = {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+
 
     return (
         <>
@@ -98,183 +151,43 @@ function DashBoard(props) {
                     </div>
 
                     <section className="recent">
-                        <div className="activity-grid">
-                            <div className="activity-card">
-                                <h3 style={{ fontSize: "20px" }}>Liste de Garages de LUKUNGA </h3>
-
-                                <table className="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nom garage</th>
-                                            <th style={{ width: "300px" }}>Spécialités</th>
-                                            <th>Adresse</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-
-                                    {etat && data.length > 0 ?
-                                        <>
-
-                                            {
-                                                data.map((val, index) => {
-                                                    return (
-                                                        <tbody>
-                                                            <tr key={index}>
-                                                                <td>{val.id}</td>
-                                                                <td>{val.nom}</td>
-                                                                <td style={{ width: "auto" }}>
-                                                                    {
-                                                                        val.specialites.map((donnee) => {
-                                                                            return (
-                                                                                <>
-                                                                                    <span style={{ border: "1px solid silver", padding: "4px" }}> {donnee.nom} </span> &nbsp; &nbsp;
-                                                                                </>
-                                                                            )
-                                                                        })
-                                                                    }
-                                                                </td>
-                                                                <td>{val.adresse}</td>
-                                                                <td>
-                                                                    <button
-                                                                        className="btn btn-info"
-                                                                        onClick={function () {
-                                                                            setId(val.id)
-                                                                        }}
-                                                                    >
-                                                                        Détail
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    )
-                                                })
-                                            }
-
-                                        </>
-
-                                        :
-                                        <tbody>
-                                            <tr>
-                                                <td colSpan="5px" style={{ textAlign: "center", height: "10vh" }}>
-                                                    <div id="loadDash">
-                                                        <LoadWaiting />
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>}
-                                </table>
-
-
-                            </div>
-
-                            <div className="summary">
-                                <div className="summary-card">
-                                    {
-                                        etat ?
-                                            <>
-                                                <div className="summary-single">
-                                                    <div>
-                                                        {id ?
-                                                            <>
-                                                                {
-                                                                    data.map((val, index) => {
-                                                                        if (val.id === id) {
-                                                                            return (
-                                                                                <p key={index}>
-                                                                                    <span style={{ fontSize: "14px" }}>
-                                                                                        Description garage
-                                                                                        <h6 className="mt-3">{val.nom} <p>{val.adresse}</p></h6>
-                                                                                        {
-                                                                                            val.specialistes.map((val) => {
-                                                                                                return (
-                                                                                                    <p>{val.telephone}</p>
-                                                                                                )
-                                                                                            })
-                                                                                        }
-                                                                                    </span>
-                                                                                    <div style={{ fontSize: "13px", marginTop: "10px" }}>
-
-                                                                                    </div>
-                                                                                </p>
-                                                                            )
-                                                                        }
-                                                                    })
-                                                                }
-                                                            </> : ""
-                                                        }
-                                                    </div>
-                                                </div>
-
-                                                <div className="summary-single">
-
-                                                    {id ?
-                                                        <>
-                                                            {
-                                                                data.map((val) => {
-                                                                    if (val.id === id) {
-                                                                        return (
-                                                                            <tr key={val}>
-                                                                                <span style={{ fontSize: "14px" }}>
-                                                                                    Description spécialité
-                                                                                </span>
-                                                                                <div style={{ fontSize: "13px", marginTop: "10px" }}>
-
-                                                                                </div>
-
-                                                                            </tr>
-                                                                        )
-                                                                    }
-                                                                })
-                                                            }
-                                                        </> : <div style={{ textAlign: "center" }}>Veuillez cliquer sur un élément dans le tableau</div>
-                                                    }
-                                                </div>
-
-                                                <div className="summary-single">
-
-                                                    {id ?
-                                                        <>
-                                                            {
-                                                                data.map((val) => {
-                                                                    if (val.id === id) {
-                                                                        return (
-                                                                            <tr key={val.id}>
-                                                                                <small style={{ fontSize: '14px', marginTop: "-20px" }}></small>
-                                                                                <h5 style={{ fontSize: "13px", marginTop: "40px", marginLeft: "-70px" }}></h5>
-
-                                                                            </tr>
-                                                                        )
-                                                                    }
-                                                                })
-                                                            }
-                                                        </> : ""
-                                                    }
-                                                </div>
-                                            </> : <div style={{ textAlign: "center", padding: "5px" }}>Pas de données ! </div>
-                                    }
-
-
-                                </div>
-
-                                <div className="bday-card">
-                                    <div className="bday-flex">
-                                        <div className="bday-img"> </div>
-                                        <div className="bday-info">
-                                            <h5>Stéphane Kikoni </h5>
-                                            <small>Admin</small>
+                        <div className="col-md-12">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="card mt-3">
+                                        <div className="card-header">Statistiques par commune</div>
+                                        <div className="card-body">
+                                            <Line
+                                                data={dataCommunes}
+                                                options={options}
+                                            />
                                         </div>
                                     </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="card mt-3">
+                                        <div className="card-header">Fréquentation de recherche</div>
+                                        <div className="card-body">
+                                            <i style={{ fontSize: "14pxpx" }}>Lingwala 10%</i> <br />
 
-                                    <div className="text-center">
-                                        <button>
-                                            <span className="fa fa-edit"></span>
-                                            Editer
-                                        </button>
+                                            <div className="progress progress-md" style={{marginBottom:"15px"}}>
+                                                <div className="progress-bar" role="progressbar" style={{ width: '10%', backgroundColor: "#6f2c34", }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+
+                                            <i className="mt-3" style={{ fontSize: "14pxpx", }}>Gombe 20%</i> <br />
+
+                                            <div className="progress progress-md" style={{marginBottom:"15px"}}>
+                                                <div className="progress-bar" role="progressbar" style={{ width: '20%', backgroundColor: "#027581" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <i style={{ fontSize: "14pxpx" }}>Kinshasa 0%</i> <br />
+
+                                            <div className="progress progress-md mt-3">
+                                                <div className="progress-bar bg-primary" role="progressbar" style={{ width: '0%' }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </section>
                 </main>
