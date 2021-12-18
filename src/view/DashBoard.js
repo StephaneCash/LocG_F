@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import API_Garages from "../data/API_Garages";
 import { useState, useEffect } from "react";
 import API_Specialistes from "../data/API_Specialistes";
-import { withRouter,s } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import axios from "axios";
 
 import { Line } from "react-chartjs-2";
