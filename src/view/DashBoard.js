@@ -107,7 +107,7 @@ function DashBoard(props) {
                 />
 
                 <main>
-                    <h4 className="dash-title"> <i className="fa fa-dashboard"> </i> Dashboard</h4>
+                    <h4 className="dash-title"> <i className="fa fa-dashboard"> </i> Dashboard <i className="fa fa-tachometer-alt"></i></h4>
 
                     <div className="dash-cards">
                         <div className="card-single">
