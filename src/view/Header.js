@@ -19,7 +19,7 @@ function Header() {
                     <ul>
                         <li>
                             <NavLink to="/home">
-                                <span className="fa fa-table"></span>
+                                <span className="fa fa-tachometer-alt"></span>
                                 <span>Dashboard</span>
                             </NavLink>
                         </li>
