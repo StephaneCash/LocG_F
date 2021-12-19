@@ -168,21 +168,26 @@ function DashBoard(props) {
                                     <div className="card mt-3">
                                         <div className="card-header">Fréquentation de recherche</div>
                                         <div className="card-body">
-                                            <i style={{ fontSize: "14pxpx" }}>Lingwala 10%</i> <br />
+                                            <i style={{ fontSize: "16px",  }}>Lingwala 10%</i> <br />
 
-                                            <div className="progress progress-md" style={{marginBottom:"15px"}}>
+                                            <div className="progress progress-md" style={{marginBottom:"15px", marginTop:'15px'}}>
                                                 <div className="progress-bar" role="progressbar" style={{ width: '10%', backgroundColor: "#6f2c34", }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
 
-                                            <i className="mt-3" style={{ fontSize: "14pxpx", }}>Gombe 20%</i> <br />
+                                            <i className="mt-3" style={{ fontSize: "16px", }}>Gombe 60%</i> <br />
 
-                                            <div className="progress progress-md" style={{marginBottom:"15px"}}>
-                                                <div className="progress-bar" role="progressbar" style={{ width: '20%', backgroundColor: "#027581" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div className="progress progress-md" style={{marginBottom:"15px", marginTop:'15px'}}>
+                                                <div className="progress-bar" role="progressbar" style={{ width: '60%', backgroundColor: "#027581" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
-                                            <i style={{ fontSize: "14pxpx" }}>Kinshasa 0%</i> <br />
+                                            <i style={{ fontSize: "14pxpx" }}>Kinshasa 20%</i> <br />
 
-                                            <div className="progress progress-md mt-3">
-                                                <div className="progress-bar bg-primary" role="progressbar" style={{ width: '0%' }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div className="progress progress-md mt-3" style={{marginBottom:"15px"}}>
+                                                <div className="progress-bar" role="progressbar" style={{ width: '20%', backgroundColor: "#6f2c34" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <i style={{ fontSize: "14pxpx" }}>Kintambo 70%</i> <br />
+
+                                            <div className="progress progress-md mt-3" style={{marginBottom:"15px"}}>
+                                                <div className="progress-bar bg-success" role="progressbar" style={{ width: '70%' }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     </div>
