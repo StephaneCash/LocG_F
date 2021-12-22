@@ -171,7 +171,7 @@ function FindGarage() {
                                                                 {
                                                                     etatLoad === false ?
                                                                         data.filter((val) => {
-                                                                            return val.nom.toLowerCase().includes(valueInput);
+                                                                            return val.marque_vehicule.toLowerCase().includes(valueInput);
                                                                         }).map((val) => {
                                                                             return (
                                                                                 <>

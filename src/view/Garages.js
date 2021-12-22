@@ -78,6 +78,7 @@ function FindGarage() {
                                         <th>#</th>
                                         <th>Nom</th>
                                         <th>Spécialités</th>
+                                        <th>Marque véhicule</th>
                                         <th>Adresse</th>
                                         <th style={{ width: "260px" }}>Actions</th>
                                     </tr>
@@ -107,6 +108,7 @@ function FindGarage() {
                                                                         })
                                                                     }
                                                                 </td>
+                                                                <td>{val.marque_vehicule}</td>
                                                                 <td style={{ border: "1px solid #f0f0f0" }}>{val.adresse}</td>
                                                                 <td>
                                                                     <button className="btn btn-default" style={{ marginRight: "5px", border: "1px solid silver" }}>Editer</button>

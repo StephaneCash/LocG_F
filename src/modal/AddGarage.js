@@ -43,6 +43,10 @@ function AddGarage(props) {
                                 <label>Choisir une ou plusieures spécialités</label>
                                 <input type="text" className="form-control" placeholder="Longitude du garage" />
                             </div>
+                            <div className="form-group">
+                                <label>Choisir une image</label>
+                                <input type="file" className="form-control" placeholder="" name="image" />
+                            </div>
                         </div>
                     </form>
                 </Modal.Body>
