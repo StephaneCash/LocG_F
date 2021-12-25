@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import API_Garages from "../data/API_Garages";
 import { useState, useEffect } from "react";
 import API_Specialistes from "../data/API_Specialistes";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 
-import { Line } from "react-chartjs-2";
+import { Line, polarArea } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
@@ -98,6 +98,37 @@ function DashBoard(props) {
     };
 
 
+
+    const dataCommune1 = {
+
+        labels: [
+            'Red',
+            'Yellow',
+            'Blue'
+        ],
+
+        datasets: [
+            {
+
+                label: 'Garages',
+                data: [10, 20, 30],
+                fill: false,
+                backgroundColor: 'black',
+                borderColor: '#027581',
+                width: "23px"
+            },
+        ],
+    };
+
+    const option1 = {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+
+
     return (
         <>
             <Header />
@@ -164,32 +195,37 @@ function DashBoard(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-6">
-                                    <div className="card mt-3">
-                                        <div className="card-header">Fréquentation de recherche</div>
-                                        <div className="card-body">
-                                            <i style={{ fontSize: "16px",  }}>Lingwala 10%</i> <br />
+                                <div className="col-md-6 row">
+                                    <div className="col-md-6">
+                                        <div className="card mt-3">
+                                            <div className="card-header">Fréquentation de recherche</div>
+                                            <div className="card-body">
+                                                <i style={{ fontSize: "16px", }}>Lingwala 10%</i> <br />
 
-                                            <div className="progress progress-md" style={{marginBottom:"15px", marginTop:'15px'}}>
-                                                <div className="progress-bar" role="progressbar" style={{ width: '10%', backgroundColor: "#6f2c34", }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
+                                                <div className="progress progress-md" style={{ marginBottom: "15px", marginTop: '15px' }}>
+                                                    <div className="progress-bar" role="progressbar" style={{ width: '10%', backgroundColor: "#6f2c34", }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
 
-                                            <i className="mt-3" style={{ fontSize: "16px", }}>Gombe 60%</i> <br />
+                                                <i className="mt-3" style={{ fontSize: "16px", }}>Gombe 60%</i> <br />
 
-                                            <div className="progress progress-md" style={{marginBottom:"15px", marginTop:'15px'}}>
-                                                <div className="progress-bar" role="progressbar" style={{ width: '60%', backgroundColor: "#027581" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <i style={{ fontSize: "14pxpx" }}>Kinshasa 20%</i> <br />
+                                                <div className="progress progress-md" style={{ marginBottom: "15px", marginTop: '15px' }}>
+                                                    <div className="progress-bar" role="progressbar" style={{ width: '60%', backgroundColor: "#027581" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <i style={{ fontSize: "14pxpx" }}>Kinshasa 20%</i> <br />
 
-                                            <div className="progress progress-md mt-3" style={{marginBottom:"15px"}}>
-                                                <div className="progress-bar" role="progressbar" style={{ width: '20%', backgroundColor: "#6f2c34" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <i style={{ fontSize: "14pxpx" }}>Kintambo 70%</i> <br />
+                                                <div className="progress progress-md mt-3" style={{ marginBottom: "15px" }}>
+                                                    <div className="progress-bar" role="progressbar" style={{ width: '20%', backgroundColor: "#6f2c34" }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <i style={{ fontSize: "14pxpx" }}>Kintambo 70%</i> <br />
 
-                                            <div className="progress progress-md mt-3" style={{marginBottom:"15px"}}>
-                                                <div className="progress-bar bg-success" role="progressbar" style={{ width: '70%' }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div className="progress progress-md mt-3" style={{ marginBottom: "15px" }}>
+                                                    <div className="progress-bar bg-success" role="progressbar" style={{ width: '70%' }} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        hh
                                     </div>
                                 </div>
                             </div>
