@@ -8,7 +8,7 @@ import API_Specialistes from "../data/API_Specialistes";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 
-import { Line, polarArea } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
@@ -101,20 +101,16 @@ function DashBoard(props) {
 
     const dataCommune1 = {
 
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue'
-        ],
+        labels: comLabels,
 
         datasets: [
             {
 
                 label: 'Garages',
-                data: [10, 20, 30],
+                data: [10, 20, 10, 13, 9, 19],
                 fill: false,
-                backgroundColor: 'black',
-                borderColor: '#027581',
+                backgroundColor: ['#829dc4', '#2c323c', 'silver', '#027581', ],
+                borderColor: 'silver',
                 width: "23px"
             },
         ],
@@ -225,7 +221,14 @@ function DashBoard(props) {
                                         </div>
                                     </div>
                                     <div className="col-md-6">
-                                        hh
+                                        <div className="card mt-3">
+                                            <div className="card-header"></div>
+                                            <div className="card-body">
+                                                <Pie
+                                                    data={dataCommune1}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

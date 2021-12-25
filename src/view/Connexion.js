@@ -67,14 +67,15 @@ function Connexion() {
         <div className="container py-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
-                    <div className="card">
-                        <div className="card-header">
-                            <h5 className="blockContenantLiconeUser"><i className="fa fa-car"></i></h5>
-                            <h5 style={{ textAlign: "center", marginTop: "20px" }}>Connectez-vous</h5>
-                        </div>
+                    <form className="form" onSubmit={loginSubmit}>
+                        <div className="card">
+                            <div className="card-header">
+                                <h5 className="blockContenantLiconeUser"><i className="fa fa-car"></i></h5>
+                                <h5 style={{ textAlign: "center", marginTop: "20px" }}>Connectez-vous</h5>
+                            </div>
 
-                        <div className="card-body">
-                            <form className="form" onSubmit={loginSubmit}>
+                            <div className="card-body">
+
                                 <div className="form-group">
                                     <label className="form-label" htmlFor='username'>Username</label>
                                     <input type="text" className="form-control"
@@ -91,15 +92,16 @@ function Connexion() {
                                     <i className="fa fa-eye viewPassword" style={{ cursor: "pointer" }} onClick={changer}></i>
                                 </div>
 
-                                <button className="btn buttonConnexion">Se connecter</button>
+                                <div className="card-footer">
+                                    <button className="btn buttonConnexion">Se connecter</button>
 
-                                <Link to="/register" style={{ textAlign: "center", color: "black" }}>
-                                    <i style={{ float: "right", marginBottom: "20px" }}>Créer un compte</i>
-                                </Link>
-                            </form>
-
+                                    <Link to="/register" style={{ textAlign: "center", color: "black" }}>
+                                        <i style={{ float: "right", marginBottom: "20px" }}>Créer un compte</i>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
